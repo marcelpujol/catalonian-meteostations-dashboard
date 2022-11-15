@@ -5,19 +5,47 @@ import { PopulationIndicator } from "../models/population-indicator.model";
 import { EconomicIndicator } from "../models/economic-indicator.model";
 import { Indicator } from "../components/enums/indicators.enum";
 import { UnitValue } from '../models/unit-value.model';
+import { SchemaData } from "../components/enums/schema-data.enum";
 
 const townIdTag: string = `TOWN_ID`;
 const url: string = `https://api.idescat.cat/emex/v1/dades.json?id=${townIdTag}&i=f271,f258,f328,f329,f318,f320,f321,f221,f222,f223,f60&lang=en`;
 
-export const getTown = (id: string) : Promise<any> => {
+export const getTown = (id: string) : Promise<Town> => {
   const townUrl = url.replace(townIdTag, id);
 
   return fetch(townUrl)
     .then(response => response.json())
     .then(data => {
+      let town = _mapTownGeneralInformation(data.fitxes.cols.col);
       const indicators = _mapTownIndicators(data.fitxes.indicadors.i);
-      console.log('indicadors', indicators);
+      town.indicators = indicators;
+      return town;
     });
+}
+
+const _mapTownGeneralInformation = (data: any) : Town => {
+  return {
+    id: _mapTownId(data),
+    name: _mapTownName(data),
+    region: _mapTownRegion(data),
+    community: _mapTownCommunity(data)
+  } as Town;
+}
+
+const _mapTownId = (data: any) : string => {
+  return data.find((column: any) => column.scheme === SchemaData.TOWN_SCHEMA).id;
+}
+
+const _mapTownName = (data: any) : string => {
+  return data.find((column: any) => column.scheme === SchemaData.TOWN_SCHEMA).content;
+}
+
+const _mapTownRegion = (data: any) : string => {
+  return data.find((column: any) => column.scheme === SchemaData.REGION_SCHEMA).content;
+}
+
+const _mapTownCommunity = (data: any) : string => {
+  return data.find((column: any) => column.scheme === SchemaData.COMMUNITY_SCHEMA).content;
 }
 
 const _mapTownIndicators = (data: any) : TownIndicators => {
