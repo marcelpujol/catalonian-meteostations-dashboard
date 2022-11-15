@@ -6,7 +6,8 @@ export const ListComponent = () => {
   useEffect(() => {
     const townId = "082325";
     getTown(townId)
-      .then(() => {
+      .then((result) => {
+        console.log('town result', result);
         console.log('YEAH!!!');
       })
       .catch(() => {
