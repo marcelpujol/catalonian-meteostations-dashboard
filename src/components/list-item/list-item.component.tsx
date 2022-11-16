@@ -1,7 +1,14 @@
-export const ListItemComponent = () => {
+import { Town } from "../../models/town.model"
+
+interface TownListParams {
+  town: Town;
+}
+
+export const ListItemComponent = (params: TownListParams) => {
   return (
-    <div>
-      <p>Name</p>
+    <div className="town-item">
+      <p>{params.town.name}</p>
+      <img src={params.town.logo}/>
     </div>
   )
 }
