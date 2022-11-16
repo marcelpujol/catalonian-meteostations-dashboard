@@ -28,7 +28,7 @@ const _mapTownGeneralInformation = (data: any) : Town => {
     id: _mapTownId(data),
     name: _mapTownName(data),
     region: _mapTownRegion(data),
-    community: _mapTownCommunity(data)
+    land: _mapTownCommunity(data)
   } as Town;
 }
 

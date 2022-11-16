@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { getTown } from '../../services/town.service';
+import { getTowns } from '../../services/towns.service';
 
 export const ListComponent = () => {
 
@@ -12,7 +13,9 @@ export const ListComponent = () => {
       })
       .catch(() => {
         console.error('OUCH!!!');
-      })
+      });
+
+    getTowns(0);
   }, []);
 
   return (
