@@ -9,7 +9,7 @@ export enum TownProperties {
   REGION_NAME = 'comarca_nom',
   LAND_GROUP = 'grup_provincia',
   LAND_CODE = 'provincia_codi',
-  LAND_NAME = 'provincia_name',
+  LAND_NAME = 'provincia_nom',
   LOGO = 'municipi_escut',
   FLAG = 'municipi_bandera',
   POPULATION = 'nombre_habitants',
