@@ -1,26 +1,20 @@
-import { useEffect } from "react"
-import { getTown } from '../../services/town.service';
+import { useEffect, useState } from "react"
+import { Town } from "../../models/town.model";
 import { getTowns } from '../../services/towns.service';
+import { ListItemComponent } from "../list-item/list-item.component";
 
 export const ListComponent = () => {
+  const [page, setPage] = useState(0);
+  const [towns, setTowns] = useState<Town[]>([]);
 
   useEffect(() => {
-    const townId = "082325";
-    getTown(townId)
-      .then((result) => {
-        console.log('town result', result);
-        console.log('YEAH!!!');
-      })
-      .catch(() => {
-        console.error('OUCH!!!');
-      });
-
-    getTowns(0);
-  }, []);
+    const towns = getTowns(page);
+    setTowns(towns);
+  }, [page]);
 
   return (
-    <div>
-        List of towns
+    <div className="town-list">
+        { towns.map(town => <ListItemComponent town={town}></ListItemComponent>) }
     </div>
-  )
+  );
 }
