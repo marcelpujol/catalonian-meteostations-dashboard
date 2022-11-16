@@ -12,7 +12,7 @@ export const getTown = (id: string) : Promise<Town> => {
   return fetch(townUrl)
     .then(response => response.json())
     .then(data => {
-      let town = mapToTown(data)
+      let town = mapToTown(data);
       const indicators = mapTownIndicators(data.fitxes.indicadors.i);
       town.indicators = indicators;
       return town;
