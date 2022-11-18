@@ -6,11 +6,11 @@ export interface Town {
   name: string;
   region: Catalogue;
   land: Catalogue;
+  altitude: string;
   coordinates: string;
   logo: string;
   flag: string;
   population: number;
   area: number;
   indicators: TownIndicators;
-
 }

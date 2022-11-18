@@ -25,6 +25,7 @@ export const mapToTown = (data: any) => {
     name: data[TownProperties.NAME],
     region: _mapToRegion(data[TownProperties.REGION_GROUP]),
     land: _mapToLand(data[TownProperties.LAND_GROUP]),
+    altitude: data[TownProperties.ALTITUDE],
     coordinates: data[TownProperties.COORDINATES],
     logo: data[TownProperties.LOGO],
     flag: data[TownProperties.FLAG],

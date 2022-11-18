@@ -13,5 +13,6 @@ export enum TownProperties {
   LOGO = 'municipi_escut',
   FLAG = 'municipi_bandera',
   POPULATION = 'nombre_habitants',
-  AREA = 'extensio'
+  AREA = 'extensio',
+  ALTITUDE = 'altitud'
 }
