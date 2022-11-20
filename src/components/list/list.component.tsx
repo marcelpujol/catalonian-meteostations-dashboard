@@ -23,7 +23,7 @@ export const ListComponent = () => {
   },[]);
 
   const onSearchTermChanged = (searchTerm: string) => {
-    const searchedTowns = towns.filter(town => town.name.includes(searchTerm));
+    const searchedTowns = towns.filter(town => town.name.toLowerCase().includes(searchTerm.toLowerCase()));
     setDisplayedTowns(searchedTowns);
   }
 
@@ -33,6 +33,7 @@ export const ListComponent = () => {
       const towns = getTowns(page);
       if (!ignoreCall) {
         setTowns(prev => [...prev, ...towns]);
+        setDisplayedTowns(prev => [...prev, ...towns]);
       }
     }, 0);
     return () => { ignoreCall = true };
@@ -50,7 +51,7 @@ export const ListComponent = () => {
       <SearchComponent placeholder={"Type something here..."} searchTermChanged={onSearchTermChanged} ></SearchComponent>
       <div className="town-list">
           { 
-            towns.map((town, index) => getTownItem(town, index))
+            displayedTowns.map((town, index) => getTownItem(town, index))
           }
       </div>
     </>
