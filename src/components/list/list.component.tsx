@@ -9,6 +9,7 @@ import './list.component.scss';
 export const ListComponent = () => {
   const [page, setPage] = useState(0);
   const [towns, setTowns] = useState<Town[]>([]);
+  const [displayedTowns, setDisplayedTowns] = useState<Town[]>([]);
 
   const observer: any = useRef();
   const lastTownElementRef = useCallback((node: any) => {
@@ -19,7 +20,12 @@ export const ListComponent = () => {
       }
     });
     if (node) observer.current.observe(node);
-  },[])
+  },[]);
+
+  const onSearchTermChanged = (searchTerm: string) => {
+    const searchedTowns = towns.filter(town => town.name.includes(searchTerm));
+    setDisplayedTowns(searchedTowns);
+  }
 
   useEffect(() => {
     let ignoreCall = false;
@@ -41,7 +47,7 @@ export const ListComponent = () => {
 
   return (
     <>
-      <SearchComponent></SearchComponent>
+      <SearchComponent placeholder={"Type something here..."} searchTermChanged={onSearchTermChanged} ></SearchComponent>
       <div className="town-list">
           { 
             towns.map((town, index) => getTownItem(town, index))
