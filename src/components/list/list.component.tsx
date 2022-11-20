@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import { Town } from "../../models/town.model";
 import { getTowns } from '../../services/towns.service';
 import { ListItemComponent } from "../list-item/list-item.component";
+import { SearchComponent } from "../search/search.component";
 
 import './list.component.scss';
 
@@ -40,6 +41,7 @@ export const ListComponent = () => {
 
   return (
     <>
+      <SearchComponent></SearchComponent>
       <div className="town-list">
           { 
             towns.map((town, index) => getTownItem(town, index))
