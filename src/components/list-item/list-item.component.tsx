@@ -8,7 +8,7 @@ interface TownListParams {
 
 export const ListItemComponent = (params: TownListParams) => {
   return (
-    <div className="town-item">
+    <div className="town-item" id={params.town.id}>
       <img src={params.town.logo} alt="town logo"/>
       <div className="town-info">
         <div className="col">
