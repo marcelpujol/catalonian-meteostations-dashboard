@@ -5,6 +5,7 @@ import { ListItemComponent } from "../list-item/list-item.component";
 import { SearchComponent } from "../search/search.component";
 
 import './list.component.scss';
+import { getTowns as getNewTowns } from '../../services/new-towns.service';
 
 export const ListComponent = () => {
   const [page, setPage] = useState(0);
@@ -38,6 +39,16 @@ export const ListComponent = () => {
     }, 0);
     return () => { ignoreCall = true };
   }, [page]);
+
+  useEffect(() => {
+    getNewTowns(0,0)
+      .then((response) => {
+        console.log('response', response);
+      })
+      .catch((err) => {
+        console.log('err', err);
+      });
+  })
 
   const getTownItem = (town: Town, index: number) => {
     const isLastElement = towns.length === index + 1;
