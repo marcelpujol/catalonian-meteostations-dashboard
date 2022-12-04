@@ -1,4 +1,4 @@
-import { Indicator } from "../components/enums/indicators.enum";
+import { Indicator } from "../enums/indicators.enum";
 import { EconomicIndicator } from "../models/economic-indicator.model";
 import { GeographicIndicator } from "../models/geographic-indicator.model";
 import { PopulationIndicator } from "../models/population-indicator.model";
