@@ -1,6 +1,6 @@
 import { Town } from "../models/town.model";
 import { mapTownIndicators } from "./indicator.service";
-import { TownProperties } from "../components/enums/town-properties.enum";
+import { TownProperties } from "../enums/town-props.enum";
 import { Catalogue } from "../models/catalogue.model";
 
 const townIdTag: string = `TOWN_ID`;
