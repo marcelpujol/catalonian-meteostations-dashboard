@@ -1,6 +1,6 @@
 import { Town } from "../models/town.model";
 import { mapTownIndicators } from "./indicator.service";
-import { TownProperties } from "../enums/town-props.enum";
+import { TownProps } from "../enums/town-props.enum";
 import { Catalogue } from "../models/catalogue.model";
 
 const townIdTag: string = `TOWN_ID`;
@@ -21,29 +21,29 @@ export const getTown = (id: string) : Promise<Town> => {
 
 export const mapToTown = (data: any) => {
   return {
-    id: data[TownProperties.INE],
-    name: data[TownProperties.NAME],
-    region: _mapToRegion(data[TownProperties.REGION_GROUP]),
-    land: _mapToLand(data[TownProperties.LAND_GROUP]),
-    altitude: data[TownProperties.ALTITUDE],
-    coordinates: data[TownProperties.COORDINATES],
-    logo: data[TownProperties.LOGO],
-    flag: data[TownProperties.FLAG],
-    population: data[TownProperties.POPULATION],
-    area: data[TownProperties.AREA]
+    id: data[TownProps.INE],
+    name: data[TownProps.NAME],
+    region: _mapToRegion(data[TownProps.REGION_GROUP]),
+    land: _mapToLand(data[TownProps.LAND_GROUP]),
+    altitude: data[TownProps.ALTITUDE],
+    coordinates: data[TownProps.COORDINATES],
+    logo: data[TownProps.LOGO],
+    flag: data[TownProps.FLAG],
+    population: data[TownProps.POPULATION],
+    area: data[TownProps.AREA]
   } as Town;
 }
 
 const _mapToRegion = (data: any): Catalogue => {
   return {
-    code: data[TownProperties.REGION_CODE],
-    name: data[TownProperties.REGION_NAME]
+    code: data[TownProps.REGION_CODE],
+    name: data[TownProps.REGION_NAME]
   } as Catalogue;
 }
 
 const _mapToLand = (data: any): Catalogue => {
   return {
-    code: data[TownProperties.LAND_CODE],
-    name: data[TownProperties.LAND_NAME]
+    code: data[TownProps.LAND_CODE],
+    name: data[TownProps.LAND_NAME]
   } as Catalogue;
 }
