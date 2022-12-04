@@ -1,0 +1,23 @@
+.meteo-station__container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+    max-width: 300px;
+    padding: 16px;
+    margin: 8px;
+    border: 1px solid blue;
+    border-radius: 5px;
+
+    .meteo-station__row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-weight: 300;
+        color: grey;
+
+        &.first-line {
+            font-weight: 600;
+            color: black;
+        }
+    }
+}
