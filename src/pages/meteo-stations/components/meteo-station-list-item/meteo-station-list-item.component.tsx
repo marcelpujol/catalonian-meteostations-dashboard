@@ -8,7 +8,7 @@ type Props = {
 
 export const MeteoStationListItemComponent = ({ meteoStation }: Props) => {
     return (
-        <div className="meteo-station__container">
+        <div className="meteo-station__container" key={meteoStation.code}>
             <div className="meteo-station__row first-line">
                 <span>{meteoStation.name}</span>
                 <span>{meteoStation.code}</span>
