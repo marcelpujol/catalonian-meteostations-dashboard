@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import { MeteoStationVariable } from "../../../../models/meteo-station-variable.model";
 import { MeteoStation } from "../../../../models/meteo-station.model";
+import { insertData, METADATA_STORE_NAME } from "../../../../services/internal-storage.service";
 import { getMeteoMetadata } from "../../../../services/meteo-metadata.service";
 import { getMeteoStations } from "../../../../services/meteo-stations.service";
 import { MeteoStationListItemComponent } from "../meteo-station-list-item/meteo-station-list-item.component";
@@ -10,7 +10,6 @@ import './meteo-station-list.component.scss';
 export const MeteoStationListComponent = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [meteoStations, setMeteoStations] = useState<MeteoStation[]>([]);
-    const [meteoMetadata, setMeteoMetaData] = useState<MeteoStationVariable[]>([]);
 
     useEffect(() => {
         let initialLoading: boolean = true;
@@ -19,9 +18,9 @@ export const MeteoStationListComponent = () => {
                 Promise.all([
                     getMeteoStations(),
                     getMeteoMetadata()
-                ]).then(([meteoStations, meteoMetadata]) => {
+                ]).then(async ([meteoStations, meteoMetadata]) => {
                     setMeteoStations(meteoStations);
-                    setMeteoMetaData(meteoMetadata);
+                    await insertData(METADATA_STORE_NAME, meteoMetadata);
                 }).catch((err) => {
                     console.error('err', err);
                 }).finally(() => {
