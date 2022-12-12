@@ -37,6 +37,7 @@ export const MeteoStationListComponent = () => {
                 meteoStations?.map((meteoStation: MeteoStation) => {
                     return (
                         <MeteoStationListItemComponent 
+                            key={meteoStation.code}
                             meteoStation={meteoStation}/>
                     );
                 })
