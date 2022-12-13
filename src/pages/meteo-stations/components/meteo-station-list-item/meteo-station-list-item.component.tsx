@@ -1,5 +1,4 @@
-import { MeteoStation } from '../../../../models/meteo-station.model';
-
+import { MeteoStation } from '../../../../models/meteo/meteo-station.model';
 import './meteo-station-list-item.component.scss';
 
 type Props = {

@@ -1,4 +1,4 @@
-import { Catalogue } from './catalogue.model';
+import { Catalogue } from "../catalogue.model";
 
 export interface MeteoStation {
     code: string;

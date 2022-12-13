@@ -1,5 +1,5 @@
 import { MeteoStationVariableProps } from "../enums/meteo-station-variable-props.enum";
-import { MeteoStationVariable } from "../models/meteo-station-variable.model";
+import { MeteoStationVariable } from "../models/meteo/meteo-station-variable.model";
 
 const URL = 'https://analisi.transparenciacatalunya.cat/resource/4fb2-n3yi.json';
 export const getMeteoMetadata = (): Promise<MeteoStationVariable[]> => {
