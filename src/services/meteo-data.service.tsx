@@ -1,10 +1,11 @@
 import { MeteoStationDataProps } from "../enums/meteo-station-data-props.enum";
 import { MeteoStationData } from "../models/meteo/meteo-station-data.model";
+import { MeteoVariableCodes } from "../enums/meteo-variable-codes.enum";
 
 const URL = 'https://analisi.transparenciacatalunya.cat/resource/nzvn-apee.json';
-export const getMeteoData = (): Promise<MeteoStationData[]> => {
+export const getMeteoData = (stationCode: string): Promise<MeteoStationData[]> => {
     return new Promise<MeteoStationData[]>((resolve, reject) => {
-        fetch(URL)
+        fetch(getUrl(stationCode))
             .then(response => response.json())
             .then(results => {
                 const metaStationData: MeteoStationData[] = [];
@@ -18,6 +19,22 @@ export const getMeteoData = (): Promise<MeteoStationData[]> => {
                 reject(err);
             })
     });
+}
+
+const getUrl = (stationCode: string): string => {
+    const url = `${URL}?$query=${getURLQuery(stationCode)}`;
+    console.log('url', url);
+    return url;
+}
+
+const getURLQuery = (stationCode: string): string => {
+    return `SELECT * 
+            WHERE codi_variable = '${MeteoVariableCodes.TEMPERATURE}' OR
+                codi_variable = '${MeteoVariableCodes.MAX_TEMPERATURE}' OR
+                codi_variable = '${MeteoVariableCodes.MIN_TEMPERATURE}' OR
+                codi_variable = '${MeteoVariableCodes.RAIN}' AND
+                codi_estacio = '${stationCode}'
+            ORDER BY data_lectura DESC LIMIT 1`;
 }
 
 const mapToMeteoStationData = (data: any) => {
