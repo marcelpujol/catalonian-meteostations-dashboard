@@ -1,16 +1,21 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { MeteoStationData } from "../../models/meteo/meteo-station-data.model";
 import { getMeteoData } from "../../services/meteo-data.service";
 
 export const MeteoDataPage = () => {
+    const params: any = useParams();
+    const [meteodata, setMeteodata] = useState<MeteoStationData[]>([]);
+    
     useEffect(() => {
-        getMeteoData("WB")
+        getMeteoData(params.id)
             .then((result) => {
-                console.log('result', result);
+               console.log('final result', result); 
             })
             .catch((err) => {
              console.error(err);   
             })
-    }, []);
+    }, [params.id]);
 
     return (
         <div>
