@@ -7,4 +7,6 @@ export interface MeteoStationData {
     value: number;
     state_code: string;
     base_code: string;
+    unit: string;
+    label: string;
 }
