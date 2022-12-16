@@ -1,6 +1,6 @@
 export interface MeteoStationVariable {
     code: string;
     name: string;
-    unity: string;
+    unit: string;
     acronym: string;
 }
