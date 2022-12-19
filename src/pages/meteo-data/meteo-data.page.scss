@@ -1,0 +1,47 @@
+.meteo-data-page-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+
+    .meteo-variables-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .variable-info-container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            padding: 4px;
+            .image-column {
+                width: 50%;
+                img {
+                    color: red;
+                }
+            }
+            .variable-info-table {
+                display: flex;
+                flex-direction: column;
+                width: 50%;
+                .row {
+                    display: flex;
+                    flex-direction: row;
+                    font-weight: 300;
+                    color: grey;
+                    &.header {
+                        font-weight: 600;
+                        color: black;
+                    }
+                }
+            }
+        }
+    }
+
+    .border-box {
+        border: 1px solid blue;
+        border-radius: 5px;
+        padding: 16px;
+    }
+
+}
