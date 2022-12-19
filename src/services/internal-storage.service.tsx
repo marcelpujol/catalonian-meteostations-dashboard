@@ -45,14 +45,26 @@ export const getAllData = async (storeName: string): Promise<any> => {
             const tx = database.transaction(storeName, 'readonly');
             const store = tx.objectStore(storeName);
             const request = store.getAll();
-            request.onsuccess = () => {
-                resolve(request.result);
-            }
-            request.onerror = (err) => {
-                reject(err);
-            }
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = (err) => reject(err);
         } catch(err) {
             console.error('get data error', err);
+            reject(err);
+        }
+    });
+}
+
+export const getDataByKey = (key: string, storeName: string): Promise<any> => {
+    return new Promise<any>(async (resolve, reject) => {
+        try {
+            const database = await getDatabase();
+            const tx = database.transaction(storeName, 'readonly');
+            const store = tx.objectStore(storeName);
+            const request = store.get(key);
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = (err) => reject(err);
+        } catch(err) {
+            console.error('get data by key', err);
             reject(err);
         }
     });

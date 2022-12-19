@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { MeteoStation } from "../../../../models/meteo-station.model";
+import { MeteoStation } from "../../../../models/meteo/meteo-station.model";
 import { insertData, METADATA_STORE_NAME } from "../../../../services/internal-storage.service";
 import { getMeteoMetadata } from "../../../../services/meteo-metadata.service";
 import { getMeteoStations } from "../../../../services/meteo-stations.service";
@@ -37,6 +37,7 @@ export const MeteoStationListComponent = () => {
                 meteoStations?.map((meteoStation: MeteoStation) => {
                     return (
                         <MeteoStationListItemComponent 
+                            key={meteoStation.code}
                             meteoStation={meteoStation}/>
                     );
                 })

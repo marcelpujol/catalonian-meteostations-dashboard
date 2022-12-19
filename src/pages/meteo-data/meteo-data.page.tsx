@@ -1,0 +1,81 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { MeteoVariableCodes } from "../../enums/meteo-variable-codes.enum";
+import { MeteoStationData } from "../../models/meteo/meteo-station-data.model";
+import { getMeteoData } from "../../services/meteo-data.service";
+
+import './meteo-data.page.scss'
+
+import currentTemperatureIcon from "../../assets/current-temp-icon.png";
+import humidtyIcon from "../../assets/humidity-icon.png";
+import maxTempIcon from "../../assets/max-temp-icon.png";
+import minTempIcon from "../../assets/min-temp-icon.png";
+import rainIcon from "../../assets/rain-icon.png";
+import snowIcon from "../../assets/snow-icon.png";
+import windIcon from "../../assets/wind-icon.png";
+
+export const MeteoDataPage = () => {
+    const params: any = useParams();
+    const [meteoData, setMeteoData] = useState<MeteoStationData[]>([]);
+    
+    useEffect(() => {
+        getMeteoData(params.id)
+            .then((meteoData) => {
+               console.log('final result', meteoData);
+               setMeteoData(meteoData);
+            })
+            .catch((err) => {
+             console.error(err);   
+            })
+    }, [params.id]);
+
+    const _renderVariable = (meteoStationData: MeteoStationData) => {
+        return (
+            <div className="variable-info-container" key={`variable-${meteoStationData.variable_code}`}>
+                <div className="image-column">
+                    <img src={ _getIconByVariableCode(meteoStationData.variable_code) }/>
+                </div>
+                <div className="variable-info-table">
+                    <div className="row header">
+                        <div>{ meteoStationData.label }</div>
+                    </div>
+                    <div className="row">
+                        <div>{ meteoStationData.value }</div>
+                        <div>{ meteoStationData.unit }</div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    const _getIconByVariableCode = (code: string): string => {
+        switch(code) {
+            case MeteoVariableCodes.TEMPERATURE:
+                return currentTemperatureIcon;
+            case MeteoVariableCodes.RELATIVE_HUMIDITY:
+                return humidtyIcon;
+            case MeteoVariableCodes.MAX_TEMPERATURE:
+                return maxTempIcon;
+            case MeteoVariableCodes.MIN_TEMPERATURE:
+                return minTempIcon;
+            case MeteoVariableCodes.RAIN:
+                return rainIcon;
+            case MeteoVariableCodes.SNOW_LEVEL:
+                return snowIcon;
+            case MeteoVariableCodes.WIND_VELOCITY:
+                return windIcon;
+            default:
+                return '';
+        }
+    }
+
+    return (
+        <div className="meteo-data-page-container">
+            <div className="meteo-variables-list border-box">
+                {
+                    meteoData.map((meteoData) => _renderVariable(meteoData))
+                }
+            </div>
+        </div>
+    );
+}

@@ -1,7 +1,7 @@
 import data from '../data/stations.json';
 import { Catalogue } from './../models/catalogue.model';
 import { MeteoStationProps } from '../enums/meteo-station-props.enum';
-import { MeteoStation } from '../models/meteo-station.model';
+import { MeteoStation } from '../models/meteo/meteo-station.model';
 
 const DISABLED_STATUS_CODE: string = "1";
 

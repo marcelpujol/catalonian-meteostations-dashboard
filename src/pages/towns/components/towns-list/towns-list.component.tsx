@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react"
-import { Town } from "../../models/town.model";
-import { getTowns } from '../../services/towns.service';
-import { ListItemComponent } from "../list-item/list-item.component";
+import { Town } from "../../../../models/town.model";
+import { getTowns } from "../../../../services/towns.service";
 
-import './list.component.scss';
+import { TownsListItemComponent } from "../towns-list-item/towns-list-item.component";
 
-export const ListComponent = () => {
+import './towns-list.component.scss';
+
+export const TownsListComponent = () => {
   const [page, setPage] = useState(0);
   const [towns, setTowns] = useState<Town[]>([]);
 
@@ -35,7 +36,7 @@ export const ListComponent = () => {
     const isLastElement = towns.length === index + 1;
     return isLastElement
       ? <div ref={lastTownElementRef} key={town.id}></div>
-      : <ListItemComponent key={town.id} town={town}></ListItemComponent>
+      : <TownsListItemComponent key={town.id} town={town}></TownsListItemComponent>
   }
 
   return (

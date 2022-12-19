@@ -1,12 +1,12 @@
-import { Town } from "../../models/town.model"
 
-import './list-item.component.scss';
+import { Town } from '../../../../models/town.model';
+import './towns-list-item.component.scss';
 
-interface TownListParams {
+interface TownItemParam {
   town: Town;
 }
 
-export const ListItemComponent = (params: TownListParams) => {
+export const TownsListItemComponent = (params: TownItemParam) => {
   return (
     <div className="town-item" id={params.town.id}>
       <img src={params.town.logo} alt="town logo"/>
