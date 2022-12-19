@@ -67,7 +67,7 @@ const parseMeteoStationDataResults = (results: any[], meteoVariablesToDisplay: M
         const variableToDisplay = meteoVariablesToDisplay.find(metadata => metadata.code === code);
         meteoStationData.push(mapToMeteoStationData(data, variableToDisplay?.unit!, variableToDisplay?.name!));
     });
-    return meteoStationData;
+    return meteoStationData.sort(sortAlgorithm);
 }
 
 const mapToMeteoStationData = (data: any, unit: string, label: string) => {
@@ -82,4 +82,9 @@ const mapToMeteoStationData = (data: any, unit: string, label: string) => {
         unit,
         label
     } as MeteoStationData;
+}
+
+const sortAlgorithm = (a: MeteoStationData, b: MeteoStationData) => {
+    if (a.label < b.label) return -1;
+    else return 1;
 }
