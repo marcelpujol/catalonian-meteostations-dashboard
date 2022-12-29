@@ -1,0 +1,27 @@
+.toolbar-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #afb42b;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border: 1px solid #7c8500;
+    color: white;
+    height: 64px;
+
+    .title-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        p {
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    }
+    .sections-container {
+        display: flex;
+        flex-direction: row;
+    }
+}
