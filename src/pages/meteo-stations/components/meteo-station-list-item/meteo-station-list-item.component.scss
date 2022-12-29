@@ -5,9 +5,9 @@
     max-width: 300px;
     padding: 16px;
     margin: 8px;
-    border: 1px solid blue;
+    border: 1px solid #7c8500;
     border-radius: 5px;
-
+    background-color: #e4e65e;
     .meteo-station__row {
         display: flex;
         flex-direction: row;
@@ -17,7 +17,19 @@
 
         &.first-line {
             font-weight: 600;
-            color: black;
+            color: #7c8500;
         }
     }
+}
+
+.meteo-station__container:hover {
+    background-color: #7c8500;
+    .meteo-station__row {
+        color: lightgray;
+        
+        &.first-line {
+            color: #e4e65e;
+        }
+    }
+
 }
