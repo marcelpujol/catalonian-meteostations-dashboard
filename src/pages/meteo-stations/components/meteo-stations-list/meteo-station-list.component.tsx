@@ -7,7 +7,11 @@ import { MeteoStationListItemComponent } from "../meteo-station-list-item/meteo-
 
 import './meteo-station-list.component.scss';
 
-export const MeteoStationListComponent = () => {
+type MeteoStationListProps = {
+    searchTerm: string;
+}
+
+export const MeteoStationListComponent = ({searchTerm}: MeteoStationListProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [meteoStations, setMeteoStations] = useState<MeteoStation[]>([]);
 
