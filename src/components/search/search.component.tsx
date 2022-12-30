@@ -1,4 +1,5 @@
 import React from "react";
+import './search.component.scss';
 
 export type SearchProps = {
     onChangeSearch: Function;
@@ -15,7 +16,7 @@ export const SearchComponent = ({onChangeSearch}: SearchProps) => {
     } 
 
     return (
-        <div>
+        <div className="search-container">
             <input id="search-box" 
                 type="text" 
                 placeholder="Search by term..."
