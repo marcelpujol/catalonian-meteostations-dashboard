@@ -1,0 +1,25 @@
+@import '../../../../variables.scss';
+
+.sidenav-container {
+    background: $dark-primary-color;
+    position: fixed;
+    top: 0;
+    left: -$sidenav-width;
+    width: $sidenav-width;
+    height: 100%;
+    transition: all 0.5s ease;
+
+    .button-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        width: 100%;
+        padding: 10px 0;
+        .close-button {
+            background-color: transparent;
+            border: 0px;
+            color: $normal-primary-color;
+            cursor: pointer;
+        }
+    }
+}

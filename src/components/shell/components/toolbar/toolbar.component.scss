@@ -1,0 +1,24 @@
+@import '../../../../variables.scss';
+
+.toolbar-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: $toolbar-height;
+    background-color: $normal-primary-color;
+    color: white;
+    .content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: $default-margin;
+        span {
+            margin-right: $default-margin;
+            cursor: pointer;
+        }
+        p {
+            margin: 0px;
+            font-size: 24px;
+        }
+    }
+}
