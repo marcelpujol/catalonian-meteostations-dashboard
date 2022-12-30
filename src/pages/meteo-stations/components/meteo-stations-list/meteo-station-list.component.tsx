@@ -13,7 +13,25 @@ type MeteoStationListProps = {
 
 export const MeteoStationListComponent = ({searchTerm}: MeteoStationListProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [meteoStations, setMeteoStations] = useState<MeteoStation[]>([]);
+    const [allMeteoStations, setAllMeteoStations] = useState<MeteoStation[]>([]);
+    const [displayedMeteoStations, setDisplayedMeteoStations] = useState<MeteoStation[]>([]);
+
+    function getFilteredMeteoStations(searchTerm: string): MeteoStation[] {
+        if (searchTerm) {
+            let searchTermLowerCase = searchTerm.toLocaleLowerCase();
+            return allMeteoStations.filter((meteoStation: MeteoStation) => {
+                return meteoStation.name.toLowerCase().includes(searchTermLowerCase) || 
+                       meteoStation.town.name.toLowerCase().includes(searchTermLowerCase) ||
+                       meteoStation.region.name.toLowerCase().includes(searchTermLowerCase)
+            });
+        }
+        return allMeteoStations;
+    }
+
+    useEffect(() => {
+        const filteredMeteoStations = getFilteredMeteoStations(searchTerm);
+        setDisplayedMeteoStations([...filteredMeteoStations]);
+    }, [searchTerm]);
 
     useEffect(() => {
         let initialLoading: boolean = true;
@@ -23,7 +41,8 @@ export const MeteoStationListComponent = ({searchTerm}: MeteoStationListProps) =
                     getMeteoStations(),
                     getMeteoMetadata()
                 ]).then(async ([meteoStations, meteoMetadata]) => {
-                    setMeteoStations(meteoStations);
+                    setAllMeteoStations(meteoStations);
+                    setDisplayedMeteoStations(meteoStations);
                     await insertData(METADATA_STORE_NAME, meteoMetadata);
                 }).catch((err) => {
                     console.error('err', err);
@@ -38,7 +57,7 @@ export const MeteoStationListComponent = ({searchTerm}: MeteoStationListProps) =
     return (
         <div className="meteo-station-list__container">
             { 
-                meteoStations?.map((meteoStation: MeteoStation) => {
+                displayedMeteoStations?.map((meteoStation: MeteoStation) => {
                     return (
                         <MeteoStationListItemComponent 
                             key={meteoStation.code}
