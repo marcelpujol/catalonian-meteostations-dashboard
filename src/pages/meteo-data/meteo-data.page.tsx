@@ -3,8 +3,7 @@ import { useParams } from "react-router";
 import { MeteoVariableCodes } from "../../enums/meteo-variable-codes.enum";
 import { MeteoStationData } from "../../models/meteo/meteo-station-data.model";
 import { getMeteoData } from "../../services/meteo-data.service";
-
-import './meteo-data.page.scss'
+import { LoaderComponent } from "../../components/loader/loader.components";
 
 import currentTemperatureIcon from "../../assets/current-temp-icon.png";
 import humidtyIcon from "../../assets/humidity-icon.png";
@@ -13,9 +12,11 @@ import minTempIcon from "../../assets/min-temp-icon.png";
 import rainIcon from "../../assets/rain-icon.png";
 import snowIcon from "../../assets/snow-icon.png";
 import windIcon from "../../assets/wind-icon.png";
+import './meteo-data.page.scss'
 
 export const MeteoDataPage = () => {
     const params: any = useParams();
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const [meteoData, setMeteoData] = useState<MeteoStationData[]>([]);
     
     useEffect(() => {
@@ -25,9 +26,22 @@ export const MeteoDataPage = () => {
                setMeteoData(meteoData);
             })
             .catch((err) => {
-             console.error(err);   
+                console.error(err);   
             })
+            .finally(() => {
+                setIsLoading(false);
+            });
     }, [params.id]);
+
+    const _renderListVariables = () => {
+        return (
+            <div className="meteo-variables-list border-box">
+                {
+                    meteoData.map((meteoData) => _renderVariable(meteoData))
+                }
+            </div>
+        );
+    }
 
     const _renderVariable = (meteoStationData: MeteoStationData) => {
         return (
@@ -71,11 +85,7 @@ export const MeteoDataPage = () => {
 
     return (
         <div className="meteo-data-page-container">
-            <div className="meteo-variables-list border-box">
-                {
-                    meteoData.map((meteoData) => _renderVariable(meteoData))
-                }
-            </div>
+            { isLoading ? <LoaderComponent/> : _renderListVariables()}
         </div>
     );
 }
