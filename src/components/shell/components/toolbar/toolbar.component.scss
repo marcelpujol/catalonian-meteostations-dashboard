@@ -5,20 +5,34 @@
     flex-direction: row;
     align-items: center;
     height: $toolbar-height;
-    background-color: $normal-primary-color;
+    background-color: var(--normal-primary-color);
     color: white;
     .content {
         display: flex;
         flex-direction: row;
         align-items: center;
         margin: $default-margin;
-        span {
+        width: 100%;
+        span:first-child {
             margin-right: $default-margin;
             cursor: pointer;
+        }
+        .separator {
+            flex: 1 1 auto;
         }
         p {
             margin: 0px;
             font-size: 24px;
+        }
+    }
+
+    .theme-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        .icon {
+            margin: 8px;
         }
     }
 }

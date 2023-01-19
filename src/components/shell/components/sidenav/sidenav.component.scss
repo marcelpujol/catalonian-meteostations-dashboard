@@ -1,7 +1,7 @@
 @import '../../../../variables.scss';
 
 .sidenav-container {
-    background: $dark-primary-color;
+    background: var(--dark-primary-color);
     position: fixed;
     top: 0;
     left: -$sidenav-width;
@@ -18,7 +18,7 @@
         .close-button {
             background-color: transparent;
             border: 0px;
-            color: $normal-primary-color;
+            color: var(--normal-primary-color);
             cursor: pointer;
         }
     }
