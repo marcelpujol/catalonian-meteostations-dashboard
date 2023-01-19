@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { SIDENAV_MENU_ITEMS } from '../../../../constants/menu.constants';
 import { SideNavMenuItem } from '../../../../models/menu/sidenav-menu-item.model';
