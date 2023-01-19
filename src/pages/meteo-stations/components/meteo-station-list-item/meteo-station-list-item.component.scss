@@ -5,30 +5,30 @@
     max-width: 300px;
     padding: 16px;
     margin: 8px;
-    border: 1px solid #7c8500;
+    border: 1px solid var(--normal-primary-color);
     border-radius: 5px;
-    background-color: #e4e65e;
+    background-color: var(--dark-primary-color);
     .meteo-station__row {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         font-weight: 300;
-        color: grey;
+        color: var(--subtitle-color);
 
         &.first-line {
             font-weight: 600;
-            color: #7c8500;
+            color: var(--normal-primary-color);
         }
     }
 }
 
 .meteo-station__container:hover {
-    background-color: #7c8500;
+    background-color: var(--light-primary-color);
     .meteo-station__row {
-        color: lightgray;
+        color: var(--subtitle-color);
         
         &.first-line {
-            color: #e4e65e;
+            color: var(--normal-primary-color);
         }
     }
 
