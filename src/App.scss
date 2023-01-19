@@ -1,0 +1,21 @@
+:root {
+    --background: white;
+    --text-color: white;
+    --subtitle-color: white;
+    --normal-primary-color: #afb42b;
+    --dark-primary-color: #7d8600;
+    --light-primary-color: #e5e75f;
+}
+
+[data-theme='dark'] {
+    --background: black;
+    --text-color: white;
+    --subtitle-color: grey;
+    --normal-primary-color: #827717;
+    --dark-primary-color: #524b00;
+    --light-primary-color: #b4a345;
+}
+
+.app-container {
+    background-color: var(--background);
+}
