@@ -1,0 +1,6 @@
+@import '../../variables.scss';
+
+.page-container {
+    height: calc(100vh - $toolbar-height);
+    overflow: auto;
+}
