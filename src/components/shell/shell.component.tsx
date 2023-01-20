@@ -7,7 +7,9 @@ export const ShellComponent = ({children}: any) => {
         <div className="wrapper">
             <ToolbarComponent></ToolbarComponent>
             <SideNavComponent></SideNavComponent>
-            {children}
+            <div className="page-container">
+                {children}
+            </div>
         </div>
     )
 }
