@@ -29,3 +29,13 @@ export const enum MeteoVariableLabels {
     MAX_TEMPERATURE = "Max temperature",
     MIN_TEMPERATURE = "Min temperature"
 }
+
+export const enum MeteoVariableFamily {
+    ATMOSPHERIC_PRESSURE = 'atmospheric-pressure-family',
+    HUMIDITY = 'humidity-family',
+    WIND = 'wind-family',
+    TEMPERATURE = 'temperature-family',
+    SNOW = 'snow-family',
+    RAIN = 'rain-family',
+    SOLAR = 'solar-family'
+};
