@@ -1,0 +1,43 @@
+.meteovariables-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: grey;
+    .text-info {
+        font-size: 18px;
+    }
+    .meteovariables-list {
+        width: 500px;
+        padding: 16px;
+        .meteovariable-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+            border-bottom: 1px solid lightgray;
+            .first-column {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                width: 50%;
+                font-weight: 300;
+            }
+            .second-column {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                width: 50%;
+                .slider {
+                    background-color: var(--light-primary-color);
+                }
+                input:checked + .slider {
+                    background-color: var(--dark-primary-color);
+                }
+                input:checked + .slider:before {
+                    background-color: var(--light-primary-color);
+                }
+            }
+        }
+    }
+}
