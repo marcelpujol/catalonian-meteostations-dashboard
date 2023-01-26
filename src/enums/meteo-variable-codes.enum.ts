@@ -22,7 +22,7 @@ export const enum MeteoVariableLabels {
     WIND_DIRECTION = "Wind direction",
     TEMPERATURE = "Temperature",
     RELATIVE_HUMIDITY = "Relative humidity",
-    ATHMOSPHERIC_PRESSURE = "AtmosphericPressure",
+    ATHMOSPHERIC_PRESSURE = "Atmospheric pressure",
     RAIN = "Rain",
     GLOBAL_SOLAR_IRRADIANCE = "Global solar irradiance",
     SNOW_LEVEL = "Snow level",
