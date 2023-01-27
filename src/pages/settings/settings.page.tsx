@@ -14,7 +14,7 @@ export const SettingsPage = () => {
 
     useEffect(() => {
         setSelectedMeteoVariables();
-    }, [meteoVariables]);
+    },[meteoVariables, selectedMeteoVariables]);
 
     function setSelectedMeteoVariables() {
         for (let meteoVariable of meteoVariables) {
