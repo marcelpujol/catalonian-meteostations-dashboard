@@ -4,6 +4,8 @@ import { MeteoVariableCodes } from "../../enums/meteo-variable-codes.enum";
 import { MeteoStationData } from "../../models/meteo/meteo-station-data.model";
 import { getMeteoData } from "../../services/meteo-data.service";
 import { LoaderComponent } from "../../components/loader/loader.components";
+import { useSelector } from "react-redux";
+import { MeteoVariable } from "../../models/meteo/meteo-variable.model";
 
 import currentTemperatureIcon from "../../assets/current-temp-icon.png";
 import humidtyIcon from "../../assets/humidity-icon.png";
@@ -18,9 +20,10 @@ export const MeteoDataPage = () => {
     const params: any = useParams();
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [meteoData, setMeteoData] = useState<MeteoStationData[]>([]);
+    const selectedMeteoVariables = useSelector<any, MeteoVariable[]>(state => state.meteoVariables.selected);
     
     useEffect(() => {
-        getMeteoData(params.id)
+        getMeteoData(params.id, selectedMeteoVariables)
             .then((meteoData) => {
                console.log('final result', meteoData);
                setMeteoData(meteoData);

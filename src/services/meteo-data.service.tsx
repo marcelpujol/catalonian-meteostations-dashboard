@@ -1,13 +1,14 @@
 import { MeteoStationDataProps } from "../enums/meteo-station-data-props.enum";
 import { MeteoStationData } from "../models/meteo/meteo-station-data.model";
-import { getStoredMetadataToDisplay } from "./meteo-metadata.service";
+import { getMetadataToDisplay } from "./meteo-metadata.service";
 import { MeteoStationVariable } from "../models/meteo/meteo-station-variable.model";
+import { MeteoVariable } from "../models/meteo/meteo-variable.model";
 
 const URL = 'https://analisi.transparenciacatalunya.cat/resource/nzvn-apee.json';
-export const getMeteoData = (stationCode: string): Promise<MeteoStationData[]> => {
+export const getMeteoData = (stationCode: string, meteoVariables: MeteoVariable[]): Promise<MeteoStationData[]> => {
     return new Promise<MeteoStationData[]>(async (resolve, reject) => {
         const maxDate = await getMaxReadingDate(stationCode) ?? getDefaultDate();
-        const metaVariablesToDisplay = await getStoredMetadataToDisplay();
+        const metaVariablesToDisplay = await getMetadataToDisplay(meteoVariables);
 
         const url = await getUrl(stationCode, metaVariablesToDisplay, maxDate);
         fetch(url)
@@ -46,7 +47,7 @@ const getDefaultDate = (): string => {
     return date.toISOString().replace('Z', '');
 }
 
-const getUrl = async (stationCode: string, metadataToDisplay: any[], maxDate: string): Promise<string> => {
+const getUrl = async (stationCode: string, metadataToDisplay: MeteoStationVariable[], maxDate: string): Promise<string> => {
     const metadataCodes = metadataToDisplay.map(metadata => `'${metadata.code}'`).join(',');
     const url = `${URL}?$query=${getURLQuery(stationCode, metadataCodes, maxDate)}`;
     console.log('url', url);
