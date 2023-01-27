@@ -10,7 +10,6 @@ export const themeSlice = createSlice({
             console.log(state, action);
             const themeMode: string = action.payload.mode ? 'dark' : 'light';
             state.mode = themeMode;
-            console.log(state);
         }
     }
 });
