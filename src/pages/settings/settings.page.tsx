@@ -18,8 +18,8 @@ export const SettingsPage = () => {
 
     function setSelectedMeteoVariables() {
         for (let meteoVariable of meteoVariables) {
-            const variable = selectedMeteoVariables?.find(variable => variable.code === meteoVariable.code);
-            if (variable) meteoVariable.selected = variable?.selected;
+            const index = selectedMeteoVariables?.findIndex(variable => variable.code === meteoVariable.code);
+            meteoVariable.selected = index >= 0;
         }
         setMeteoVariables(meteoVariables);
     }
