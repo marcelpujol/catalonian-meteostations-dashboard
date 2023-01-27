@@ -22,10 +22,20 @@ export const enum MeteoVariableLabels {
     WIND_DIRECTION = "Wind direction",
     TEMPERATURE = "Temperature",
     RELATIVE_HUMIDITY = "Relative humidity",
-    ATHMOSPHERIC_PRESSURE = "AtmosphericPressure",
+    ATHMOSPHERIC_PRESSURE = "Atmospheric pressure",
     RAIN = "Rain",
     GLOBAL_SOLAR_IRRADIANCE = "Global solar irradiance",
     SNOW_LEVEL = "Snow level",
     MAX_TEMPERATURE = "Max temperature",
     MIN_TEMPERATURE = "Min temperature"
 }
+
+export const enum MeteoVariableFamily {
+    ATMOSPHERIC_PRESSURE = 'atmospheric-pressure-family',
+    HUMIDITY = 'humidity-family',
+    WIND = 'wind-family',
+    TEMPERATURE = 'temperature-family',
+    SNOW = 'snow-family',
+    RAIN = 'rain-family',
+    SOLAR = 'solar-family'
+};
