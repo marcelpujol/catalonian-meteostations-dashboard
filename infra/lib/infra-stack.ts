@@ -1,7 +1,9 @@
 import * as cdk from '@aws-cdk/core';
+import * as lambda from '@aws-cdk/aws-lambda';
 import * as s3 from '@aws-cdk/aws-s3';
 import * as s3Deployment from '@aws-cdk/aws-s3-deployment';
-import { CloudFrontWebDistribution, OriginAccessIdentity } from '@aws-cdk/aws-cloudfront';
+import * as iam from '@aws-cdk/aws-iam';
+import { CloudFrontWebDistribution, LambdaEdgeEventType, OriginAccessIdentity } from '@aws-cdk/aws-cloudfront';
 
 export class InfraStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
@@ -22,6 +24,37 @@ export class InfraStack extends cdk.Stack {
     });
     sourceBucket.grantRead(originAccessIdentity);
 
+    //create my first lamda edge role that I need to use it
+    const myFirstLambdaEdgeRole = new iam.Role(this, 'my-first-lamda-edge-role', {
+      assumedBy: new iam.ServicePrincipal('lambda.amazonaws.com')
+    });
+
+    //inside that role adding a policy that allows several actions
+    myFirstLambdaEdgeRole.addToPolicy(
+      new iam.PolicyStatement({
+        effect: iam.Effect.ALLOW,
+        resources: ['*'],
+        actions: [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ]
+      })
+    );
+
+    //creates a lambda function
+    const myEdgeLambdaFunction = new lambda.Function(this, 'MyEdgeLambdaFunction', {
+      runtime: lambda.Runtime.NODEJS_12_X,
+      code: lambda.Code.fromAsset('../infra/lib/lambda-edges'),
+      handler: 'index.handle',
+      role: myFirstLambdaEdgeRole
+    });
+
+    //creates a numered lambda function version to gives to cloudfront
+    const myEdgeLambdaFunctionVersion = new lambda.Version(this, 'MyEdgeLambdaFunctionVersion', {
+      lambda: myEdgeLambdaFunction
+    });
+
     //creates the cloudfront distribution
     const distribution = new CloudFrontWebDistribution(this, `cloudfront-distribution-${props?.stackName}`, {
       originConfigs: [
@@ -31,7 +64,15 @@ export class InfraStack extends cdk.Stack {
             originAccessIdentity: originAccessIdentity
           },
           behaviors: [
-            { isDefaultBehavior: true }
+            { 
+              isDefaultBehavior: true,
+              lambdaFunctionAssociations: [
+                {
+                  eventType: LambdaEdgeEventType.VIEWER_REQUEST,
+                  lambdaFunction: myEdgeLambdaFunctionVersion
+                }
+              ]
+            }
           ]
         }
       ],
