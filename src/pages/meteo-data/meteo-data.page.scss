@@ -41,6 +41,19 @@
         }
     }
 
+    .meteo-variables-error {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        background-color: var(--error-primary-color);
+        padding: 16px;
+        color: white;
+        border-radius: 5px;
+        span {
+            margin-right: 8px;
+        }
+    }
+
     .border-box {
         border-radius: 5px;
         padding: 16px;
