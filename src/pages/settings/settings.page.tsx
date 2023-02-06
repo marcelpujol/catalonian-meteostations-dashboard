@@ -11,17 +11,17 @@ export const SettingsPage = () => {
     const selectedMeteoVariables = useSelector<any, MeteoVariable[]>(state => state.meteoVariables.selected);
     const [meteoVariables, setMeteoVariables] = useState<MeteoVariable[]>(METEO_VARIABLES);
     const { update } = useSelectedMeteoVariables();
-
+    
     useEffect(() => {
         setSelectedMeteoVariables();
-    },[meteoVariables, selectedMeteoVariables]);
+    },[]);
 
     function setSelectedMeteoVariables() {
         for (let meteoVariable of meteoVariables) {
             const index = selectedMeteoVariables?.findIndex(variable => variable.code === meteoVariable.code);
             meteoVariable.selected = index >= 0;
         }
-        setMeteoVariables(meteoVariables);
+        setMeteoVariables([...meteoVariables]);
     }
 
     function onToggleChanged(value: boolean, id: string) {
