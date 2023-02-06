@@ -16,7 +16,7 @@ export const ToggleComponent = ({toggleChanged: onToggleChanged, id, defaultValu
 
     function handleChange(e: React.ChangeEvent) {
         const element: any = e.target;
-        setValue(element.value);
+        setValue(element.checked);
         onToggleChanged(element.checked, element.id);
     }
 
