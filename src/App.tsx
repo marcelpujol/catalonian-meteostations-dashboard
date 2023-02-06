@@ -4,6 +4,7 @@ import { TownsPage } from './pages/towns/towns.page';
 import { MeteoStationsPage } from './pages/meteo-stations/meteo-stations.page';
 import { MeteoDataPage } from './pages/meteo-data/meteo-data.page';
 import { SettingsPage } from './pages/settings/settings.page';
+import { AboutPage } from './pages/about/about.page';
 import { useSelector } from 'react-redux';
 import './App.scss';
 
@@ -19,6 +20,7 @@ function App() {
             <Route path="meteostations" element={<MeteoStationsPage/>}/>
             <Route path="meteodata/:id" element={<MeteoDataPage/>}/>
             <Route path="settings" element={<SettingsPage/>}/>
+            <Route path="about" element={<AboutPage/>}/>
           </Routes>
         </ShellComponent>
       </BrowserRouter>
