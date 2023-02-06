@@ -38,11 +38,18 @@ export const MeteoDataPage = () => {
 
     const _renderListVariables = () => {
         return (
-            <div className="meteo-variables-list border-box">
-                {
-                    meteoData.map((meteoData) => _renderVariable(meteoData))
-                }
-            </div>
+            meteoData.length 
+                ? 
+                <div className="meteo-variables-list border-box">
+                    {
+                        meteoData?.map((meteoData) => _renderVariable(meteoData))
+                    }
+                </div>
+                :
+                <div className="meteo-variables-error">
+                    <span className="material-symbols-outlined">error</span>
+                    There are no data to display. Try again later
+                </div>
         );
     }
 
