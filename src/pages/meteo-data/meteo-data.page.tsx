@@ -6,14 +6,16 @@ import { getMeteoData } from "../../services/meteo-data.service";
 import { LoaderComponent } from "../../components/loader/loader.components";
 import { useSelector } from "react-redux";
 import { MeteoVariable } from "../../models/meteo/meteo-variable.model";
-
-import currentTemperatureIcon from "../../assets/current-temp-icon.png";
+//icons
 import humidtyIcon from "../../assets/humidity-icon.png";
-import maxTempIcon from "../../assets/max-temp-icon.png";
-import minTempIcon from "../../assets/min-temp-icon.png";
+import pressureIcon from "../../assets/pressure-icon.png";
 import rainIcon from "../../assets/rain-icon.png";
 import snowIcon from "../../assets/snow-icon.png";
+import solarIcon from "../../assets/solar-icon.png";
+import temperatureIcon from "../../assets/temperature-icon.png";
 import windIcon from "../../assets/wind-icon.png";
+
+import { LineChartComponent } from "../../components/line-chart/line-chart";
 import './meteo-data.page.scss'
 
 export const MeteoDataPage = () => {
@@ -36,56 +38,65 @@ export const MeteoDataPage = () => {
             });
     }, [params.id]);
 
-    const _renderListVariables = () => {
+    const _renderContent = () => {
         return (
-            meteoData.length 
-                ? 
-                <div className="meteo-variables-list border-box">
-                    {
-                        meteoData?.map((meteoData) => _renderVariable(meteoData))
-                    }
-                </div>
-                :
-                <div className="meteo-variables-error">
-                    <span className="material-symbols-outlined">error</span>
-                    There are no data to display. Try again later
-                </div>
+            <div className="meteo-data-container">
+                { _renderVariablesContainer() }
+                { _renderChart() }
+            </div>
+        );
+    }
+
+    const _renderVariablesContainer = () => {
+        return (
+            <div className="meteo-variables-container">
+                { meteoData?.map((meteoData) => _renderVariable(meteoData)) }
+            </div>
         );
     }
 
     const _renderVariable = (meteoStationData: MeteoStationData) => {
         return (
-            <div className="variable-info-container" key={`variable-${meteoStationData.variable_code}`}>
+            <div className="variable-container" key={`variable-${meteoStationData.variable_code}`}>
                 <div className="image-column">
                     <img src={ _getIconByVariableCode(meteoStationData.variable_code) }/>
                 </div>
+                <div className="spacer"></div>
                 <div className="variable-info-table">
                     <div className="row header">
                         <div>{ meteoStationData.label }</div>
                     </div>
                     <div className="row">
-                        <div>{ meteoStationData.value }</div>
-                        <div>{ meteoStationData.unit }</div>
+                        { meteoStationData.value } { meteoStationData.unit }
                     </div>
                 </div>
             </div>
         );
     }
 
+    const _renderChart = () => {
+        return <LineChartComponent variableCode={"32"} stationCode={params.id}></LineChartComponent>;
+    }
+
     const _getIconByVariableCode = (code: string): string => {
         switch(code) {
-            case MeteoVariableCodes.TEMPERATURE:
-                return currentTemperatureIcon;
             case MeteoVariableCodes.RELATIVE_HUMIDITY:
+            case MeteoVariableCodes.MAX_RELATIVE_HUMIDITY:
                 return humidtyIcon;
-            case MeteoVariableCodes.MAX_TEMPERATURE:
-                return maxTempIcon;
-            case MeteoVariableCodes.MIN_TEMPERATURE:
-                return minTempIcon;
+            case MeteoVariableCodes.ATHMOSPHERIC_PRESSURE:
+            case MeteoVariableCodes.MAX_ATMOSPHERIC_PRESSURE:
+            case MeteoVariableCodes.MIN_ATMOSPHERIC_PRESSURE:
+                return pressureIcon;
             case MeteoVariableCodes.RAIN:
                 return rainIcon;
             case MeteoVariableCodes.SNOW_LEVEL:
                 return snowIcon;
+            case MeteoVariableCodes.GLOBAL_SOLAR_IRRADIANCE:
+                return solarIcon;
+            case MeteoVariableCodes.TEMPERATURE:
+            case MeteoVariableCodes.MAX_TEMPERATURE:
+            case MeteoVariableCodes.MIN_TEMPERATURE:
+                return temperatureIcon;
             case MeteoVariableCodes.WIND_VELOCITY:
                 return windIcon;
             default:
@@ -95,7 +106,7 @@ export const MeteoDataPage = () => {
 
     return (
         <div className="meteo-data-page-container">
-            { isLoading ? <LoaderComponent/> : _renderListVariables()}
+            { isLoading ? <LoaderComponent/> : _renderContent()}
         </div>
     );
 }
