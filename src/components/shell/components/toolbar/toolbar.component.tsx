@@ -44,7 +44,7 @@ export const ToolbarComponent = () => {
             <div className="content">
                 { getToolbarIcon() }
                 <p>{title}</p>
-                <span className="separator"/>
+                <span className="spacer"/>
                 { getThemeMode() }
             </div>
         </div>
