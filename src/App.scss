@@ -1,22 +1,23 @@
 :root {
-    --background: white;
+    --background: rgb(174,213,255);
     --text-color: white;
     --subtitle-color: white;
-    --normal-primary-color: #afb42b;
-    --dark-primary-color: #7d8600;
-    --light-primary-color: #e5e75f;
+    --normal-primary-color: rgb(80,151,231);
+    --dark-primary-color: rgb(25,65,102);
+    --light-primary-color: rgb(132,180,225);
     --error-primary-color: #B00020;
     --default-app-border-radius: 5px;
     --default-app-padding: 8px;
+    --card-color: rgba(255,255,255);
 }
 
 [data-theme='dark'] {
-    --background: black;
+    --background: rgb(0,23,54);
     --text-color: white;
     --subtitle-color: grey;
-    --normal-primary-color: #827717;
-    --dark-primary-color: #524b00;
-    --light-primary-color: #b4a345;
+    --normal-primary-color: rgb(18,74,136);
+    --dark-primary-color: rgb(12,32,51);
+    --light-primary-color: rgb(34,90,143);
 }
 
 .app-container {
