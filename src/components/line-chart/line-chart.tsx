@@ -2,16 +2,16 @@
 import { Chart } from "chart.js/auto";
 import { useEffect, useState } from "react";
 import { METEO_CHART_OPTIONS } from "../../constants/meteo-chart-options.constants";
-import { getMeteoChartData } from "../../services/meteo-chart-data";
+import { getMeteoChartData, getMeteoChartTitleByVariableCode } from "../../services/meteo-chart-data";
 import { SelectComponent } from "../select/select.components";
 import { getLineChartConfiguration } from "./line-chart-config/line-chart-config";
 import { LineChartProps } from "./line-chart.props";
 import './line-chart.scss';
 
-export const LineChartComponent = ({ variableCode, stationCode }: LineChartProps) => {
+export const LineChartComponent = ({ variableCode, stationCode, title }: LineChartProps) => {
     let lineChart: any = null;
     const divId = 'line-chart';
-    const [chartState, setChartState] = useState<any>({ variableCode, stationCode });
+    const [chartState, setChartState] = useState<any>({ variableCode, stationCode, title });
     const [chartLoaded, setChartLoaded] = useState<boolean>(false);
     
     useEffect(() => {
@@ -36,7 +36,6 @@ export const LineChartComponent = ({ variableCode, stationCode }: LineChartProps
                 labels: chartData.labels,
                 datasets: [
                     {
-                        label: 'Temperature (ºC)',
                         data: chartData.data,
                         fill: true,
                         borderWidth: 3,
@@ -66,19 +65,22 @@ export const LineChartComponent = ({ variableCode, stationCode }: LineChartProps
     }
 
     function _isVisibleCanvas() : string {
-        console.log('hola que tal!')
         return (chartLoaded) ? 'visible' : '';
     }
 
     function _onSelectedChanged(selectedVariableCode: string): void {
-        setChartState({ ...chartState, variableCode: selectedVariableCode });
+        setChartState({ ...chartState, variableCode: selectedVariableCode, title: getMeteoChartTitleByVariableCode(selectedVariableCode) });
     }
 
     return (
         <div className="chart-container">
             <div className="chart-content">
                 <div className="chart-header">
-                    <span>Temperature in ºC</span>
+                    <div className="image-container">
+                        <span className="material-symbols-outlined">equalizer</span>
+                    </div>
+                    <div className="spacer"></div>
+                    <span>Historical {chartState.title}</span>
                     <div className="spacer"></div>
                     <SelectComponent options={METEO_CHART_OPTIONS} selectChanged={_onSelectedChanged}></SelectComponent>
                 </div>
