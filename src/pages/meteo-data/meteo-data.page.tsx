@@ -26,16 +26,9 @@ export const MeteoDataPage = () => {
     
     useEffect(() => {
         getMeteoData(params.id, selectedMeteoVariables)
-            .then((meteoData) => {
-               console.log('final result', meteoData);
-               setMeteoData(meteoData);
-            })
-            .catch((err) => {
-                console.error(err);   
-            })
-            .finally(() => {
-                setIsLoading(false);
-            });
+            .then((meteoData) => setMeteoData(meteoData))
+            .catch((err) => console.error(err))
+            .finally(() => setIsLoading(false));
     }, [params.id]);
 
     const _renderContent = () => {
@@ -75,7 +68,13 @@ export const MeteoDataPage = () => {
     }
 
     const _renderChart = () => {
-        return <LineChartComponent variableCode={"32"} stationCode={params.id}></LineChartComponent>;
+        const defaultValues = _getDefaultChartVariableAndTitle();
+        return (
+            <LineChartComponent 
+                variableCode={defaultValues.variableCode} 
+                stationCode={params.id} 
+                title={defaultValues.title}/>
+        );
     }
 
     const _getIconByVariableCode = (code: string): string => {
@@ -102,6 +101,10 @@ export const MeteoDataPage = () => {
             default:
                 return '';
         }
+    }
+
+    const _getDefaultChartVariableAndTitle = (): { variableCode: string, title: string } => {
+        return { variableCode: MeteoVariableCodes.TEMPERATURE, title: 'Temperature (ºC)' }
     }
 
     return (

@@ -1,8 +1,9 @@
-export function getLineChartConfiguration(onProgressCallback: Function) {
+export function getLineChartConfiguration(onProgressCallback: Function = () => {}, onCompleteCallback: Function = () => {}) {
     return {
         events: [],
         animation: {
-            onProgress: () => onProgressCallback()
+            onProgress: () => onProgressCallback(),
+            onComplete: () => onCompleteCallback()
         },
         scales: {
             x: { grid: { display: true, color: 'rgb(158, 158, 158)' }, ticks: { padding: 0, color: 'rgb(0, 0, 0)', font: { family: 'Helvetica Neue', weight: '400' } } },
@@ -10,9 +11,7 @@ export function getLineChartConfiguration(onProgressCallback: Function) {
         },
         elements: { point: { radius: 0 } },
         plugins: { legend: { display: false } },
-        layout: {
-           autoPadding: true
-        }
+        layout: { padding: { top: 50 } }
     }
 }
 

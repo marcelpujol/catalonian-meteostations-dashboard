@@ -1,15 +1,52 @@
 .chart-container {
-    display: flex;
-    flex-direction: row;
     height: 50vh;
     width: 100vw;
-    justify-content: center;
-    align-items: center;
-    margin-top: 48px;
+    .chart-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 48px;
+        position: relative;
+        
+        .chart-header {
+            display: flex;
+            flex-direction: row;
+            position: absolute;
+            align-items: center;
+            width: calc(700px - 32px);
+            padding: 16px 16px 0px;
+            background-color: var(--card-color);
+            border-radius: var(--default-app-border-radius);
+            top: 0;
 
-    canvas {
-        background-color: var(--card-color);
-        border-radius: var(--default-app-border-radius);
-        padding: 16px;
+            span {
+                font-weight: 300;
+            }
+
+            .image-container {
+                background-color: var(--normal-primary-color);
+                border-radius: var(--default-app-border-radius);
+                padding: 8px;
+                margin-right: 8px;
+                span {
+                    font-size: 32px;
+                    color: white;
+                }
+            }
+        }
+        
+        canvas {
+            margin-top: 32px;
+            max-width: calc(700px);
+            max-height: 375px;
+            display: none;
+            background-color: var(--card-color);
+            border-radius: var(--default-app-border-radius);
+            padding: 16px;
+            .visible {
+                display: block;
+            }
+        }
     }
 }
