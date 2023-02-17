@@ -19,6 +19,21 @@
             background-color: var(--card-color);
             border-radius: var(--default-app-border-radius);
             top: 0;
+
+            span {
+                font-weight: 300;
+            }
+
+            .image-container {
+                background-color: var(--normal-primary-color);
+                border-radius: var(--default-app-border-radius);
+                padding: 8px;
+                margin-right: 8px;
+                span {
+                    font-size: 32px;
+                    color: white;
+                }
+            }
         }
         
         canvas {
