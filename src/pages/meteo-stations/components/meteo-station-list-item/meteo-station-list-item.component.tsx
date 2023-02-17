@@ -22,12 +22,14 @@ export const MeteoStationListItemComponent = ({ meteoStation }: Props) => {
     }
 
     return (
-        <div className="meteo-station__container" key={meteoStation.code} onClick={() => { handleClick(meteoStation.code) }}>
-            <div className="meteo-station__row first-line">
-                <span>{meteoStation.name}</span>
-                <span>{meteoStation.code}</span>
+        <div className="meteo-station-container" key={meteoStation.code} onClick={() => { handleClick(meteoStation.code) }}>
+            <div className="image-container">
+                <span className="material-symbols-outlined">sensors</span>
+                <span className="text">{meteoStation.code}</span>
             </div>
-            <div className="meteo-station__row">
+            <div className="spacer"></div>
+            <div className="info-container">
+                <span className="first">{meteoStation.name}</span>
                 <span>{meteoStation.town.name}</span>
                 <span>{meteoStation.region.name}</span>
             </div>
