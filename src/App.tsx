@@ -15,7 +15,7 @@ function App() {
       <BrowserRouter>
         <ShellComponent>
           <Routes>
-            <Route path="/" element={<TownsPage/>}/>
+            <Route path="/" element={<MeteoStationsPage/>}/>
             <Route path="towns" element={<TownsPage/>}/>
             <Route path="meteostations" element={<MeteoStationsPage/>}/>
             <Route path="meteodata/:id" element={<MeteoDataPage/>}/>
