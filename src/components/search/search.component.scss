@@ -7,12 +7,12 @@
         width: 300px;
         padding: 8px;
         border-radius: 8px;
-        border: 2px solid #7c8500;
-        color: #524c00;
+        border: 2px solid white;
+        color: var(--normal-primary-color);
         font-size: 16px;
     }
     input:focus {
         outline: none !important;
-        border: 2px solid #524c00;
+        border: 2px solid var(--normal-primary-color);
     }
 }

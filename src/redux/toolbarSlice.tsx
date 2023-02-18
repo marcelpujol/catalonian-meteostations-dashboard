@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const toolbarSlice = createSlice({
     name: 'toolbar',
     initialState: {
-        title: 'Towns',
+        title: 'Meteostations',
         backArrow: false
     },
     reducers: {

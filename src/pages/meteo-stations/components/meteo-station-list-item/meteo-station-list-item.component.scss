@@ -1,25 +1,42 @@
-.meteo-station__container {
+.meteo-station-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     min-width: 300px;
     max-width: 300px;
     padding: 16px;
     margin: 8px;
-    border: 1px solid var(--normal-primary-color);
     border-radius: 5px;
-    background-color: var(--dark-primary-color);
-    .meteo-station__row {
+    background-color: var(--card-color);
+    .image-container {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+        background-color: var(--normal-primary-color);
+        border-radius: var(--default-app-border-radius);
+        padding: 8px;
+        margin-right: 8px;
+        span {
+            font-size: 32px;
+            color: white;
+        }
+        .text {
+            font-size: 12px;
+        }
+    }
+    .info-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: space-around;
+        font-size: 12px;
         font-weight: 300;
-        color: var(--subtitle-color);
-
-        &.first-line {
+        .first {
+            font-size: 16px;
             font-weight: 600;
             color: var(--normal-primary-color);
         }
     }
+
 }
 
 .meteo-station__container:hover {
