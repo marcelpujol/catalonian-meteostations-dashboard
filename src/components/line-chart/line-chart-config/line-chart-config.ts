@@ -11,7 +11,7 @@ export function getLineChartConfiguration(onProgressCallback: Function = () => {
         },
         elements: { point: { radius: 0 } },
         plugins: { legend: { display: false } },
-        layout: { padding: { top: 50 } }
+        layout: { padding: { top: 50, right: 8, left: 25, bottom: 8 } }
     }
 }
 
