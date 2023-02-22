@@ -1,0 +1,46 @@
+.map-container {
+    width: 375px;
+    height: 375px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--default-app-padding);
+    background-color: var(--card-color);
+    border-radius: var(--default-app-border-radius);
+
+    .map-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-weight: 300;
+        width: 100%;
+
+        .image-container {
+            background-color: var(--normal-primary-color);
+            border-radius: var(--default-app-border-radius);
+            padding: 8px;
+            margin-right: 8px;
+            span {
+                font-size: 32px;
+                color: white;
+            }
+        }
+
+        .information {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            font-size: 12px;
+
+            span:last-child {
+                max-width: 300px;
+                font-size: 18px;
+                color: var(--normal-primary-color);
+                font-weight: 600;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+        }
+    }
+}
