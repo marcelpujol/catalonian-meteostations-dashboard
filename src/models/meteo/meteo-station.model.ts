@@ -7,4 +7,6 @@ export interface MeteoStation {
     land: Catalogue;
     region: Catalogue;
     state: Catalogue;
+    latitude: string;
+    longitude: string;
 }
