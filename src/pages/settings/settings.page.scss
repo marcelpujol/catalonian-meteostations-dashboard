@@ -3,9 +3,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: grey;
     .text-info {
         font-size: 18px;
+        color: var(--normal-primary-color);
     }
     .meteovariables-list {
         width: 500px;
@@ -15,13 +15,17 @@
             flex-direction: row;
             align-items: center;
             width: 100%;
-            border-bottom: 1px solid lightgray;
+            background-color: var(--card-color);
+            border-radius: var(--default-app-border-radius);
+            margin: 8px;
+            padding: 8px;
             .first-column {
                 display: flex;
                 flex-direction: row;
                 justify-content: flex-start;
                 width: 50%;
-                font-weight: 300;
+                font-weight: 500;
+                color: var(--normal-primary-color);
             }
             .second-column {
                 display: flex;
