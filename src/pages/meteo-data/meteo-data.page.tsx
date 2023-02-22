@@ -14,10 +14,13 @@ import snowIcon from "../../assets/snow-icon.png";
 import solarIcon from "../../assets/solar-icon.png";
 import temperatureIcon from "../../assets/temperature-icon.png";
 import windIcon from "../../assets/wind-icon.png";
+import windDirection from "../../assets/wind-direction.png";
 
 import { LineChartComponent } from "../../components/line-chart/line-chart";
-import './meteo-data.page.scss'
+import { MeteoDataMapComponent } from "./components/meteo-data-map.component";
+import { getMeteoStationById } from "../../services/meteo-stations.service";
 
+import './meteo-data.page.scss'
 export const MeteoDataPage = () => {
     const params: any = useParams();
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -35,7 +38,10 @@ export const MeteoDataPage = () => {
         return (
             <div className="meteo-data-container">
                 { _renderVariablesContainer() }
-                { _renderChart() }
+                <div className="meteo-data-row-container">
+                    { _renderMap() }
+                    { _renderChart() }
+                </div>
             </div>
         );
     }
@@ -70,11 +76,27 @@ export const MeteoDataPage = () => {
     const _renderChart = () => {
         const defaultValues = _getDefaultChartVariableAndTitle();
         return (
-            <LineChartComponent 
-                variableCode={defaultValues.variableCode} 
-                stationCode={params.id} 
-                title={defaultValues.title}/>
+            <div className="meteo-data-slot">
+                <LineChartComponent 
+                    variableCode={defaultValues.variableCode} 
+                    stationCode={params.id} 
+                    title={defaultValues.title}/>
+            </div>
         );
+    }
+
+    const _renderMap = () => {
+        const meteoStation = getMeteoStationById(params.id);
+        return (
+            <div className="meteo-data-slot">
+                <MeteoDataMapComponent 
+                    latitude={meteoStation.latitude} 
+                    longitude={meteoStation.longitude} 
+                    town={meteoStation.town.name} 
+                    land={meteoStation.land.name} 
+                    region={meteoStation.region.name}/>
+            </div>
+        )
     }
 
     const _getIconByVariableCode = (code: string): string => {
@@ -98,6 +120,8 @@ export const MeteoDataPage = () => {
                 return temperatureIcon;
             case MeteoVariableCodes.WIND_VELOCITY:
                 return windIcon;
+            case MeteoVariableCodes.WIND_DIRECTION:
+                return windDirection;
             default:
                 return '';
         }

@@ -10,7 +10,7 @@ export enum MeteoStationProps {
     REGION_CODE = 'codi_comarca',
     REGION_NAME = 'nom_comarca',
     LAND_CODE = 'codi_provincia',
-    LAND_NAME = 'codi_comarca',
+    LAND_NAME = 'nom_provincia',
     STATE_CODE = 'codi_estat_ema',
     STATE_NAME = 'nom_estat_ema'
 }

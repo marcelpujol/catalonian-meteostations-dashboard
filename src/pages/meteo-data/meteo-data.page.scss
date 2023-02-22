@@ -56,4 +56,16 @@
             }
         }
     }
+
+    .meteo-data-row-container {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-top: 48px;
+        .meteo-data-slot {
+            margin: var(--default-app-padding);
+        }
+    }
 }

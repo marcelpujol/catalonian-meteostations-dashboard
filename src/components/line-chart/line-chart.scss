@@ -1,12 +1,9 @@
 .chart-container {
-    height: 50vh;
-    width: 100vw;
     .chart-content {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-top: 48px;
         position: relative;
         
         .chart-header {
@@ -14,8 +11,8 @@
             flex-direction: row;
             position: absolute;
             align-items: center;
-            width: calc(700px - 32px);
-            padding: 16px 16px 0px;
+            width: calc(700px - 16px);
+            padding: 8px 8px 0px;
             background-color: var(--card-color);
             border-radius: var(--default-app-border-radius);
             top: 0;
@@ -38,12 +35,12 @@
         
         canvas {
             margin-top: 32px;
-            max-width: calc(700px);
-            max-height: 375px;
+            width: calc(700px);
+            height: 375px;
             display: none;
             background-color: var(--card-color);
             border-radius: var(--default-app-border-radius);
-            padding: 16px;
+            padding: 0px 8px;
             .visible {
                 display: block;
             }
