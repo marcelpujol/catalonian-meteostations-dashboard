@@ -1,12 +1,9 @@
 .chart-container {
-    height: 50vh;
-    width: 100vw;
     .chart-content {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-top: 48px;
         position: relative;
         
         .chart-header {
@@ -38,8 +35,8 @@
         
         canvas {
             margin-top: 32px;
-            max-width: calc(700px);
-            max-height: 375px;
+            width: calc(700px);
+            height: 375px;
             display: none;
             background-color: var(--card-color);
             border-radius: var(--default-app-border-radius);
