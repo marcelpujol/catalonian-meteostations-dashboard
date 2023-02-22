@@ -24,6 +24,12 @@ export const getMeteoStations = (): Promise<MeteoStation[]> => {
     });
 }
 
+export const getMeteoStationById = (id: string): MeteoStation => {
+    const results: any[] = data.elements;
+    const selectedResult = results.find(station => station[MeteoStationProps.CODE] === id);
+    return mapToMeteoStation(selectedResult);
+}
+
 const mapToMeteoStation = (data: any): MeteoStation => {
     return {
         code: data[MeteoStationProps.CODE],
@@ -32,6 +38,8 @@ const mapToMeteoStation = (data: any): MeteoStation => {
         land: mapToCatalogues(data, MeteoStationProps.LAND_CODE, MeteoStationProps.LAND_NAME),
         region: mapToCatalogues(data, MeteoStationProps.REGION_CODE, MeteoStationProps.REGION_NAME),
         state: mapToCatalogues(data, MeteoStationProps.STATE_CODE, MeteoStationProps.STATE_NAME),
+        latitude: data[MeteoStationProps.LATITUDE],
+        longitude: data[MeteoStationProps.LONGITUDE]
     } as MeteoStation;
 }
 
