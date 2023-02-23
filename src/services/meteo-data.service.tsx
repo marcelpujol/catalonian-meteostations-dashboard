@@ -3,6 +3,7 @@ import { MeteoStationData } from "../models/meteo/meteo-station-data.model";
 import { getMetadataToDisplay } from "./meteo-metadata.service";
 import { MeteoStationVariable } from "../models/meteo/meteo-station-variable.model";
 import { MeteoVariable } from "../models/meteo/meteo-variable.model";
+import { parseLastUpdateDate, setToolbarChip } from "./toolbar.service";
 
 const URL = 'https://analisi.transparenciacatalunya.cat/resource/nzvn-apee.json';
 export const getMeteoData = (stationCode: string, meteoVariables: MeteoVariable[]): Promise<MeteoStationData[]> => {
@@ -15,6 +16,8 @@ export const getMeteoData = (stationCode: string, meteoVariables: MeteoVariable[
             .then(response => response.json())
             .then(results => {
                 const parsedData = parseMeteoStationDataResults(results, metaVariablesToDisplay);
+                const lastUpdatedDate = parseLastUpdateDate(maxDate);
+                setToolbarChip(`Updated on ${lastUpdatedDate}`);
                 resolve(parsedData);
             })
             .catch((err) => {

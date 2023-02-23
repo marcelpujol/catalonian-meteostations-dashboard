@@ -19,6 +19,7 @@ import windDirection from "../../assets/wind-direction.png";
 import { LineChartComponent } from "../../components/line-chart/line-chart";
 import { MeteoDataMapComponent } from "./components/meteo-data-map.component";
 import { getMeteoStationById } from "../../services/meteo-stations.service";
+import { setToolbarChip } from "../../services/toolbar.service";
 
 import './meteo-data.page.scss'
 export const MeteoDataPage = () => {
@@ -33,6 +34,10 @@ export const MeteoDataPage = () => {
             .catch((err) => console.error(err))
             .finally(() => setIsLoading(false));
     }, [params.id]);
+
+    useEffect(() => {
+        return () => setToolbarChip(null);
+    }, []);
 
     const _renderContent = () => {
         return (
