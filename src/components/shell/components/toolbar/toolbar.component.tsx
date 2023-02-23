@@ -3,6 +3,10 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useTheme } from '../../../../hooks/useTheme.hook';
 import { ToggleComponent } from '../../../toggle/toggle.component';
+import { ChipComponent } from '../../../chip/chip.component';
+import { useEffect, useState } from 'react';
+import { getToolbarChip } from '../../../../services/toolbar.service';
+import { Subscription } from 'rxjs';
 import './toolbar.component.scss';
 
 export const ToolbarComponent = () => {
@@ -10,6 +14,17 @@ export const ToolbarComponent = () => {
     const { updateTheme } = useTheme();
     const title = useSelector<any, any>(state => state.toolbar.title);
     const backArrow = useSelector<any, any>(state => state.toolbar.backArrow);
+    const [chipInfo, setChipInfo] = useState<string|null>();
+    let subscription: Subscription;
+
+    useEffect(() => {
+        subscription = getToolbarChip().subscribe((text) => {
+            setChipInfo(text);
+        });
+
+        return () => subscription.unsubscribe();
+    }, []);
+
 
     function handleMenuClick(): void {
         openSideNav();
@@ -29,6 +44,12 @@ export const ToolbarComponent = () => {
             : <span className="open-button material-symbols-outlined" onClick={handleMenuClick}>menu</span>;
     }
 
+    function displayChipInfo(): any {
+        return (
+            chipInfo ? <ChipComponent text={chipInfo}></ChipComponent> : null
+        )
+    }
+
     function getThemeMode(): any {
         return (
             <div className="theme-container">
@@ -44,6 +65,8 @@ export const ToolbarComponent = () => {
             <div className="content">
                 { getToolbarIcon() }
                 <p>{title}</p>
+                <span className="spacer"/>
+                { displayChipInfo() }
                 <span className="spacer"/>
                 { getThemeMode() }
             </div>
