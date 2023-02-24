@@ -1,0 +1,27 @@
+.progress-bar-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--default-app-padding);
+    .scale-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 2px;
+        span {
+            color: black;
+            font-size: 8px;
+            font-weight: 300;
+        }
+    }
+    .all-static-progress-bar {
+        height: 5px;
+        background-color: lightgray;
+        border-radius: var(--default-app-border-radius);
+        width: 150px;
+        .completed-static-progress-bar {
+            height: 5px;
+            background-color: var(--normal-primary-color);
+            border-radius: var(--default-app-border-radius);
+        } 
+    }
+}
