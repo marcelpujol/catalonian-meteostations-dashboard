@@ -1,0 +1,46 @@
+.temperature-progress-bar-container {
+    margin-top: 8px;
+    font-size: 12px;
+}
+.scale {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 8px;
+    margin-bottom: 2px;
+    margin-right: 4px;
+    color: black;
+    font-weight: 300;
+}
+.temperature-progress-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 5px;
+    width: 150px;
+    .negative-range {
+        background-color: lightgray;
+        border-radius: var(--default-app-border-radius);
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        .negative-value {
+            height: 5px;
+            width: 0%;
+            background-color: var(--light-primary-color);
+            border-radius: var(--default-app-border-radius);
+        }
+    }
+    .positive-range {
+        background-color: lightgray;
+        border-radius: var(--default-app-border-radius);
+        width: 100%;
+        .positive-value {
+            width: 0%;
+            height: 5px;
+            background-color: var(--normal-primary-color);
+            border-radius: var(--default-app-border-radius);
+        }
+    }
+}
