@@ -18,6 +18,7 @@ import windDirection from "../../assets/wind-direction.png";
 
 import { LineChartComponent } from "../../components/line-chart/line-chart";
 import { MeteoDataMapComponent } from "./components/meteo-data-map.component";
+import { CardDataComponent } from "../../components/card-data/card-data.component";
 import { getMeteoStationById } from "../../services/meteo-stations.service";
 import { setToolbarChip } from "../../services/toolbar.service";
 
@@ -60,21 +61,16 @@ export const MeteoDataPage = () => {
     }
 
     const _renderVariable = (meteoStationData: MeteoStationData) => {
+        const { max, min } = _getValueLimitsByVariableCode(meteoStationData.variable_code);
         return (
-            <div className="variable-container" key={`variable-${meteoStationData.variable_code}`}>
-                <div className="image-column">
-                    <img src={ _getIconByVariableCode(meteoStationData.variable_code) }/>
-                </div>
-                <div className="spacer"></div>
-                <div className="variable-info-table">
-                    <div className="row header">
-                        <div>{ meteoStationData.label }</div>
-                    </div>
-                    <div className="row">
-                        { meteoStationData.value } { meteoStationData.unit }
-                    </div>
-                </div>
-            </div>
+            <CardDataComponent 
+                code={meteoStationData.variable_code} 
+                icon={_getIconByVariableCode(meteoStationData.variable_code)} 
+                label={meteoStationData.label} 
+                value={meteoStationData.value}
+                max={max}
+                min={min}
+                unit={meteoStationData.unit}/>
         );
     }
 
@@ -129,6 +125,34 @@ export const MeteoDataPage = () => {
                 return windDirection;
             default:
                 return '';
+        }
+    }
+
+    const _getValueLimitsByVariableCode = (code: string): { min: number, max: number } => {
+        switch(code) {
+            case MeteoVariableCodes.RELATIVE_HUMIDITY:
+            case MeteoVariableCodes.MAX_RELATIVE_HUMIDITY:
+                return {min: 0, max: 100 };
+            case MeteoVariableCodes.ATHMOSPHERIC_PRESSURE:
+            case MeteoVariableCodes.MAX_ATMOSPHERIC_PRESSURE:
+            case MeteoVariableCodes.MIN_ATMOSPHERIC_PRESSURE:
+                return { min: 900, max: 1100 }
+            case MeteoVariableCodes.RAIN:
+                return { min: 0, max: 100 };
+            case MeteoVariableCodes.SNOW_LEVEL:
+                return { min: 0, max: 100 };
+            case MeteoVariableCodes.GLOBAL_SOLAR_IRRADIANCE:
+                return { min: 0, max: 1000 };
+            case MeteoVariableCodes.TEMPERATURE:
+            case MeteoVariableCodes.MAX_TEMPERATURE:
+            case MeteoVariableCodes.MIN_TEMPERATURE:
+                return { min: -20, max: 60 };
+            case MeteoVariableCodes.WIND_VELOCITY:
+                return { min: 0, max: 150 };
+            case MeteoVariableCodes.WIND_DIRECTION:
+                return { min: 0, max: 360 };
+            default:
+                return { min: 0, max: 100 };
         }
     }
 
