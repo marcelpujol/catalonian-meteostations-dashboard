@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
-import { useToolbar } from "../../../../hooks/useUpdateToolbar.hook";
 import { MeteoStation } from "../../../../models/meteo/meteo-station.model";
 import { insertData, METADATA_STORE_NAME } from "../../../../services/internal-storage.service";
 import { getMeteoMetadata } from "../../../../services/meteo-metadata.service";
 import { getMeteoStations } from "../../../../services/meteo-stations.service";
+import { updateToolbar } from "../../../../services/toolbar.service";
 import { MeteoStationListItemComponent } from "../meteo-station-list-item/meteo-station-list-item.component";
 
 import './meteo-station-list.component.scss';
@@ -13,7 +13,6 @@ type MeteoStationListProps = {
 }
 
 export const MeteoStationListComponent = ({searchTerm}: MeteoStationListProps) => {
-    const { updateToolbar } = useToolbar();
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [allMeteoStations, setAllMeteoStations] = useState<MeteoStation[]>([]);
     const [displayedMeteoStations, setDisplayedMeteoStations] = useState<MeteoStation[]>([]);
@@ -37,7 +36,7 @@ export const MeteoStationListComponent = ({searchTerm}: MeteoStationListProps) =
 
     useEffect(() => {
         let initialLoading: boolean = true;
-        updateToolbar('Meteostations', false);
+        updateToolbar({ title: 'Meteostations', backArrow: false, chipInfo: null! });
         setTimeout(() => {
             if (initialLoading) {
                 Promise.all([

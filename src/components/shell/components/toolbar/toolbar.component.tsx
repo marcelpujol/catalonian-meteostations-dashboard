@@ -1,28 +1,40 @@
 import { openSideNav } from '../../utils/shell.utils';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { useTheme } from '../../../../hooks/useTheme.hook';
 import { ToggleComponent } from '../../../toggle/toggle.component';
 import { ChipComponent } from '../../../chip/chip.component';
 import { useEffect, useState } from 'react';
-import { getToolbarChip } from '../../../../services/toolbar.service';
+import { getToolbarBackArrow, getToolbarChip, getToolbarTitle } from '../../../../services/toolbar.service';
 import { Subscription } from 'rxjs';
 import './toolbar.component.scss';
 
 export const ToolbarComponent = () => {
     const navigate = useNavigate();
     const { updateTheme } = useTheme();
-    const title = useSelector<any, any>(state => state.toolbar.title);
-    const backArrow = useSelector<any, any>(state => state.toolbar.backArrow);
-    const [chipInfo, setChipInfo] = useState<string|null>();
-    let subscription: Subscription;
+    const [ title, setTitle ] = useState<string>();
+    const [ backArrow, setBackArrow ] = useState<boolean>();
+    const [ chipInfo, setChipInfo ] = useState<string>();
+    const subscriptions: Subscription[] = [];
 
     useEffect(() => {
-        subscription = getToolbarChip().subscribe((text) => {
-            setChipInfo(text);
+        const toolbarTitleSubscription = getToolbarTitle().subscribe((title) => {
+            setTitle(title);
         });
+        subscriptions.push(toolbarTitleSubscription);
 
-        return () => subscription.unsubscribe();
+        const toolbarBackArrowSubscription = getToolbarBackArrow().subscribe((backArrow) => {
+            setBackArrow(backArrow);
+        });
+        subscriptions.push(toolbarBackArrowSubscription);
+
+        const toolbarChipSubscription = getToolbarChip().subscribe((chipInfo) => {
+            setChipInfo(chipInfo);
+        });
+        subscriptions.push(toolbarChipSubscription);
+
+        return () => {
+            subscriptions.map((subscription) => subscription.unsubscribe());
+        }
     }, []);
 
 
