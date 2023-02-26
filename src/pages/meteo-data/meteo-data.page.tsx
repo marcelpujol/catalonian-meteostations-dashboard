@@ -20,9 +20,10 @@ import { LineChartComponent } from "../../components/line-chart/line-chart";
 import { MeteoDataMapComponent } from "./components/meteo-data-map.component";
 import { CardDataComponent } from "../../components/card-data/card-data.component";
 import { getMeteoStationById } from "../../services/meteo-stations.service";
-import { setToolbarChip } from "../../services/toolbar.service";
+import { setToolbarChip, updateToolbar } from "../../services/toolbar.service";
 
 import './meteo-data.page.scss'
+
 export const MeteoDataPage = () => {
     const params: any = useParams();
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -30,6 +31,9 @@ export const MeteoDataPage = () => {
     const selectedMeteoVariables = useSelector<any, MeteoVariable[]>(state => state.meteoVariables.selected);
     
     useEffect(() => {
+        const meteoStation = getMeteoStationById(params.id);
+        updateToolbar({ title: meteoStation.name, backArrow: true, chipInfo: null! });
+
         getMeteoData(params.id, selectedMeteoVariables)
             .then((meteoData) => setMeteoData(meteoData))
             .catch((err) => console.error(err))
@@ -37,7 +41,7 @@ export const MeteoDataPage = () => {
     }, [params.id]);
 
     useEffect(() => {
-        return () => setToolbarChip(null);
+        return () => setToolbarChip(null!);
     }, []);
 
     const _renderContent = () => {
