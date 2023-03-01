@@ -1,18 +1,29 @@
 import { useState } from "react";
 import { SearchComponent } from "../../components/search/search.component"
 import { MeteoStationListComponent } from "./components/meteo-stations-list/meteo-station-list.component"
+import { MeteoStationsMap } from "./components/meteo-stations-map/meteo-stations-map.component";
+import { ViewSelectorComponent } from "./components/view-selector/view-selector.component";
+
+import './meteo-stations.page.scss';
 
 export const MeteoStationsPage = () => {
     const [searchTerm, setSearchTerm] = useState<string>();
+    const [isMapView, setIsMapView] = useState<boolean>(false);
 
-    function handleChangeSearch(value: string) {
-        setSearchTerm(value);
-    }
+    const handleChangeSearch = (value: string) => setSearchTerm(value);
+    const onViewSelectorChanged = (state: boolean) => setIsMapView(state);
 
     return (
         <>
-            <SearchComponent onChangeSearch={handleChangeSearch}/>
-            <MeteoStationListComponent searchTerm={searchTerm!}/>
+            <div className="filters-container">
+                <SearchComponent onChangeSearch={handleChangeSearch}/>
+                <ViewSelectorComponent viewSelectorChanged={onViewSelectorChanged}></ViewSelectorComponent>
+            </div>
+            {
+                isMapView 
+                    ? <MeteoStationsMap></MeteoStationsMap>
+                    : <MeteoStationListComponent searchTerm={searchTerm!}/>
+            }
         </>
     )
 }
