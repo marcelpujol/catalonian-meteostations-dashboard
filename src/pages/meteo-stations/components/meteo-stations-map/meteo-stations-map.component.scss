@@ -1,0 +1,7 @@
+.meteo-stations-map-container {
+    .leaflet-container {
+        border-radius: var(--default-app-border-radius);
+        width: 100vw !important;
+        height: calc(100vh - (70px + 64px)) !important;
+    }
+}

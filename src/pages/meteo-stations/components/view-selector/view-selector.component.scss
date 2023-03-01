@@ -1,0 +1,15 @@
+.view-selector-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    .material-symbols-outlined {
+        margin: 8px;
+    }
+    span {
+        color: var(--normal-primary-color);
+    }
+    input:checked + .slider {
+        background-color: white;
+    }
+}
