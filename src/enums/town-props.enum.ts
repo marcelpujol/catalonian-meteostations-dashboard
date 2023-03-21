@@ -1,4 +1,4 @@
-export enum TownProps {
+export enum TownProp {
   INE = 'ine',
   INE6 = 'ine6',
   NAME = 'municipi_nom',

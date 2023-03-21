@@ -1,0 +1,2 @@
+export const DEFAULT_ZOOM_MAP = 7.5;
+export const DEFAULT_CENTER_MAP = [41.591159, 1.520862];

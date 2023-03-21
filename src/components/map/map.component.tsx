@@ -16,10 +16,12 @@ export const MapComponent = ({ latitude, longitude, zoom = 10 }: MapProps) => {
     });
     L.Marker.prototype.options.icon = DefaultIcon;
 
-
     return (
         <div className="map-container">
-            <MapContainer style={{ width: "300px", height: "300px" }} center={position} zoom={zoom} scrollWheelZoom={false}>
+            <MapContainer style={{ width: "300px", height: "300px" }} 
+                center={position} 
+                zoom={zoom} 
+                scrollWheelZoom={false}>
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />

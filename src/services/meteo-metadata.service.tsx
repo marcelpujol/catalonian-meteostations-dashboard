@@ -1,4 +1,4 @@
-import { MeteoStationVariableProps } from "../enums/meteo-station-variable-props.enum";
+import { MeteoStationVariableProp } from "../enums/meteo-station-variable-props.enum";
 import { MeteoStationVariable } from "../models/meteo/meteo-station-variable.model";
 import { MeteoVariable } from "../models/meteo/meteo-variable.model";
 import { getDataByKey, METADATA_STORE_NAME } from "./internal-storage.service";
@@ -39,9 +39,9 @@ export const getMetadataToDisplay = async (meteoVariables: MeteoVariable[]): Pro
 
 const mapToMetadataVariable = (data: any) => {
     return {
-        code: data[MeteoStationVariableProps.CODE],
-        name: data[MeteoStationVariableProps.NAME],
-        unit: data[MeteoStationVariableProps.UNITY],
-        acronym: data[MeteoStationVariableProps.ACRONYM]
+        code: data[MeteoStationVariableProp.CODE],
+        name: data[MeteoStationVariableProp.NAME],
+        unit: data[MeteoStationVariableProp.UNITY],
+        acronym: data[MeteoStationVariableProp.ACRONYM]
     } as MeteoStationVariable
 }

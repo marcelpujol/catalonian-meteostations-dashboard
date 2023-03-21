@@ -1,4 +1,4 @@
-export enum MeteoStationDataProps {
+export enum MeteoStationDataProp {
     ID = 'id',
     STATION_CODE = 'codi_estacio',
     VARIABLE_CODE = 'codi_variable',
