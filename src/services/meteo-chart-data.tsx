@@ -1,4 +1,4 @@
-import { MeteoVariableCodes } from "../enums/meteo-variable-codes.enum";
+import { MeteoVariableCode } from "../enums/meteo-variable-codes.enum";
 import { MeteoStationData } from "../models/meteo/meteo-station-data.model";
 
 const URL = 'https://analisi.transparenciacatalunya.cat/resource/nzvn-apee.json';
@@ -21,11 +21,11 @@ export function getMeteoChartData(variableCode: string, stationCode: string) {
 
 export function getMeteoChartTitleByVariableCode(code: string) {
     switch (code) {
-        case MeteoVariableCodes.TEMPERATURE:
+        case MeteoVariableCode.TEMPERATURE:
             return 'Temperature (Cº)';
-        case MeteoVariableCodes.RELATIVE_HUMIDITY:
+        case MeteoVariableCode.RELATIVE_HUMIDITY:
             return 'Relative Humidity (%)';
-        case MeteoVariableCodes.RAIN:
+        case MeteoVariableCode.RAIN:
             return 'Rain (mm)';
     }
 }

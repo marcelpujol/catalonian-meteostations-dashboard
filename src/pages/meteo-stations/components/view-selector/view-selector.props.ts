@@ -1,3 +1,4 @@
 export interface ViewSelectorProps {
-    viewSelectorChanged: Function
+    viewSelectorChanged: Function;
+    defaultValue: boolean;
 }

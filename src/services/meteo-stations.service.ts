@@ -1,6 +1,6 @@
 import data from '../data/stations.json';
 import { Catalogue } from './../models/catalogue.model';
-import { MeteoStationProps } from '../enums/meteo-station-props.enum';
+import { MeteoStationProp } from '../enums/meteo-station-props.enum';
 import { MeteoStation } from '../models/meteo/meteo-station.model';
 
 const DISABLED_STATUS_CODE: string = "1";
@@ -26,20 +26,20 @@ export const getMeteoStations = (): Promise<MeteoStation[]> => {
 
 export const getMeteoStationById = (id: string): MeteoStation => {
     const results: any[] = data.elements;
-    const selectedResult = results.find(station => station[MeteoStationProps.CODE] === id);
+    const selectedResult = results.find(station => station[MeteoStationProp.CODE] === id);
     return mapToMeteoStation(selectedResult);
 }
 
 const mapToMeteoStation = (data: any): MeteoStation => {
     return {
-        code: data[MeteoStationProps.CODE],
-        name: data[MeteoStationProps.NAME],
-        town: mapToCatalogues(data, MeteoStationProps.TOWN_CODE, MeteoStationProps.TOWN_NAME),
-        land: mapToCatalogues(data, MeteoStationProps.LAND_CODE, MeteoStationProps.LAND_NAME),
-        region: mapToCatalogues(data, MeteoStationProps.REGION_CODE, MeteoStationProps.REGION_NAME),
-        state: mapToCatalogues(data, MeteoStationProps.STATE_CODE, MeteoStationProps.STATE_NAME),
-        latitude: data[MeteoStationProps.LATITUDE],
-        longitude: data[MeteoStationProps.LONGITUDE]
+        code: data[MeteoStationProp.CODE],
+        name: data[MeteoStationProp.NAME],
+        town: mapToCatalogues(data, MeteoStationProp.TOWN_CODE, MeteoStationProp.TOWN_NAME),
+        land: mapToCatalogues(data, MeteoStationProp.LAND_CODE, MeteoStationProp.LAND_NAME),
+        region: mapToCatalogues(data, MeteoStationProp.REGION_CODE, MeteoStationProp.REGION_NAME),
+        state: mapToCatalogues(data, MeteoStationProp.STATE_CODE, MeteoStationProp.STATE_NAME),
+        latitude: data[MeteoStationProp.LATITUDE],
+        longitude: data[MeteoStationProp.LONGITUDE]
     } as MeteoStation;
 }
 

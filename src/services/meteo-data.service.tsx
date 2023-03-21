@@ -1,4 +1,4 @@
-import { MeteoStationDataProps } from "../enums/meteo-station-data-props.enum";
+import { MeteoStationDataProp } from "../enums/meteo-station-data-props.enum";
 import { MeteoStationData } from "../models/meteo/meteo-station-data.model";
 import { getMetadataToDisplay } from "./meteo-metadata.service";
 import { MeteoStationVariable } from "../models/meteo/meteo-station-variable.model";
@@ -67,7 +67,7 @@ const getURLQuery = (stationCode: string, metadataCodes: string, maxDate: string
 const parseMeteoStationDataResults = (results: any[], meteoVariablesToDisplay: MeteoStationVariable[]) => {
     const meteoStationData: MeteoStationData[] = [];
     results.forEach((data: any) => {
-        const code = data[MeteoStationDataProps.VARIABLE_CODE];
+        const code = data[MeteoStationDataProp.VARIABLE_CODE];
         const variableToDisplay = meteoVariablesToDisplay.find(metadata => metadata.code === code);
         meteoStationData.push(mapToMeteoStationData(data, variableToDisplay?.unit!, variableToDisplay?.name!));
     });
@@ -76,13 +76,13 @@ const parseMeteoStationDataResults = (results: any[], meteoVariablesToDisplay: M
 
 const mapToMeteoStationData = (data: any, unit: string, label: string) => {
     return {
-        id: data[MeteoStationDataProps.ID],
-        station_code: data[MeteoStationDataProps.STATION_CODE],
-        variable_code: data[MeteoStationDataProps.VARIABLE_CODE],
-        lecture_data: data[MeteoStationDataProps.LECTURE_DATA],
-        extreme_data: data[MeteoStationDataProps.EXTREME_DATA],
-        value: data[MeteoStationDataProps.VALUE],
-        base_code: data[MeteoStationDataProps.BASE_CODE],
+        id: data[MeteoStationDataProp.ID],
+        station_code: data[MeteoStationDataProp.STATION_CODE],
+        variable_code: data[MeteoStationDataProp.VARIABLE_CODE],
+        lecture_data: data[MeteoStationDataProp.LECTURE_DATA],
+        extreme_data: data[MeteoStationDataProp.EXTREME_DATA],
+        value: data[MeteoStationDataProp.VALUE],
+        base_code: data[MeteoStationDataProp.BASE_CODE],
         unit,
         label
     } as MeteoStationData;
