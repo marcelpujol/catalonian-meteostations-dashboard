@@ -99,7 +99,8 @@ export const MeteoDataPage = () => {
                     longitude={meteoStation.longitude} 
                     town={meteoStation.town.name} 
                     land={meteoStation.land.name} 
-                    region={meteoStation.region.name}/>
+                    region={meteoStation.region.name}
+                    code={meteoStation.code}/>
             </div>
         )
     }

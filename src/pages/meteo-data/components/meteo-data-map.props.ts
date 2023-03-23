@@ -4,4 +4,5 @@ export interface MeteoDataMapProps {
     town: string;   //municipi
     land: string;   //comarca
     region: string; //provincia
+    code: string;
 }

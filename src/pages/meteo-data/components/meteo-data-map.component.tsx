@@ -2,7 +2,7 @@ import { MapComponent } from "../../../components/map/map.component";
 import './meteo-data-map.component.scss';
 import { MeteoDataMapProps } from "./meteo-data-map.props";
 
-export const MeteoDataMapComponent = ({ latitude, longitude, town, land, region }: MeteoDataMapProps) => {
+export const MeteoDataMapComponent = ({ latitude, longitude, town, land, region, code }: MeteoDataMapProps) => {
     return (
         <div className="map-container">
             <div className="map-header">
@@ -15,7 +15,7 @@ export const MeteoDataMapComponent = ({ latitude, longitude, town, land, region 
                     <span>{town}, {region} ({land})</span>
                 </div>
             </div>
-            <MapComponent latitude={+latitude} longitude={+longitude}></MapComponent>
+            <MapComponent latitude={+latitude} longitude={+longitude} code={code}></MapComponent>
         </div>
     );
 }
