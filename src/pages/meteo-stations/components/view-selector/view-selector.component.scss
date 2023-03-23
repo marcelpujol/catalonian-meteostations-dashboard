@@ -9,7 +9,7 @@
     span {
         color: var(--normal-primary-color);
     }
-    input:checked + .slider {
+    input[type=checkbox]:checked + .slider {
         background-color: white;
     }
 }

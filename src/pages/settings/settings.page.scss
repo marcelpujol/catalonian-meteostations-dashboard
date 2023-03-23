@@ -35,10 +35,10 @@
                 .slider {
                     background-color: var(--light-primary-color);
                 }
-                input:checked + .slider {
+                input[type=checkbox]:checked + .slider {
                     background-color: var(--dark-primary-color);
                 }
-                input:checked + .slider:before {
+                input[type=checkbox]:checked + .slider:before {
                     background-color: var(--light-primary-color);
                 }
             }

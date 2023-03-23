@@ -17,7 +17,7 @@ export const MeteoStationsPage = () => {
         <>
             <div className="filters-container">
                 <SearchComponent onChangeSearch={handleChangeSearch}/>
-                <ViewSelectorComponent viewSelectorChanged={onViewSelectorChanged}></ViewSelectorComponent>
+                <ViewSelectorComponent viewSelectorChanged={onViewSelectorChanged}/>
             </div>
             {
                 isMapView 
