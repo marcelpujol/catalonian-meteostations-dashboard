@@ -1,4 +1,4 @@
-export const enum MeteoVariableCodes {
+export const enum MeteoVariableCode {
     MAX_ATMOSPHERIC_PRESSURE = "1",
     MIN_ATMOSPHERIC_PRESSURE = "2",
     MAX_RELATIVE_HUMIDITY = "3",
@@ -14,7 +14,7 @@ export const enum MeteoVariableCodes {
     MIN_TEMPERATURE = "42"
 }
 
-export const enum MeteoVariableLabels {
+export const enum MeteoVariableLabel {
     MAX_ATMOSPHERIC_PRESSURE = "Max atmospheric pressure",
     MIN_ATMOSPHERIC_PRESSURE = "Min atmospheric pressure",
     MAX_RELATIVE_HUMIDITY = "Max relative humidity",

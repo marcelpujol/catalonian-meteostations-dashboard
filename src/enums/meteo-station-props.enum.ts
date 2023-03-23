@@ -1,4 +1,4 @@
-export enum MeteoStationProps {
+export enum MeteoStationProp {
     CODE = 'codi_estacio',
     NAME = 'nom_estacio',
     TYPE = 'codi_tipus',

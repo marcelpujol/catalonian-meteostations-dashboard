@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { MeteoVariableCodes } from "../../enums/meteo-variable-codes.enum";
+import { MeteoVariableCode } from "../../enums/meteo-variable-codes.enum";
 import { MeteoStationData } from "../../models/meteo/meteo-station-data.model";
 import { getMeteoData } from "../../services/meteo-data.service";
 import { LoaderComponent } from "../../components/loader/loader.components";
@@ -107,26 +107,26 @@ export const MeteoDataPage = () => {
 
     const _getIconByVariableCode = (code: string): string => {
         switch(code) {
-            case MeteoVariableCodes.RELATIVE_HUMIDITY:
-            case MeteoVariableCodes.MAX_RELATIVE_HUMIDITY:
+            case MeteoVariableCode.RELATIVE_HUMIDITY:
+            case MeteoVariableCode.MAX_RELATIVE_HUMIDITY:
                 return humidtyIcon;
-            case MeteoVariableCodes.ATHMOSPHERIC_PRESSURE:
-            case MeteoVariableCodes.MAX_ATMOSPHERIC_PRESSURE:
-            case MeteoVariableCodes.MIN_ATMOSPHERIC_PRESSURE:
+            case MeteoVariableCode.ATHMOSPHERIC_PRESSURE:
+            case MeteoVariableCode.MAX_ATMOSPHERIC_PRESSURE:
+            case MeteoVariableCode.MIN_ATMOSPHERIC_PRESSURE:
                 return pressureIcon;
-            case MeteoVariableCodes.RAIN:
+            case MeteoVariableCode.RAIN:
                 return rainIcon;
-            case MeteoVariableCodes.SNOW_LEVEL:
+            case MeteoVariableCode.SNOW_LEVEL:
                 return snowIcon;
-            case MeteoVariableCodes.GLOBAL_SOLAR_IRRADIANCE:
+            case MeteoVariableCode.GLOBAL_SOLAR_IRRADIANCE:
                 return solarIcon;
-            case MeteoVariableCodes.TEMPERATURE:
-            case MeteoVariableCodes.MAX_TEMPERATURE:
-            case MeteoVariableCodes.MIN_TEMPERATURE:
+            case MeteoVariableCode.TEMPERATURE:
+            case MeteoVariableCode.MAX_TEMPERATURE:
+            case MeteoVariableCode.MIN_TEMPERATURE:
                 return temperatureIcon;
-            case MeteoVariableCodes.WIND_VELOCITY:
+            case MeteoVariableCode.WIND_VELOCITY:
                 return windIcon;
-            case MeteoVariableCodes.WIND_DIRECTION:
+            case MeteoVariableCode.WIND_DIRECTION:
                 return windDirection;
             default:
                 return '';
@@ -135,26 +135,26 @@ export const MeteoDataPage = () => {
 
     const _getValueLimitsByVariableCode = (code: string): { min: number, max: number } => {
         switch(code) {
-            case MeteoVariableCodes.RELATIVE_HUMIDITY:
-            case MeteoVariableCodes.MAX_RELATIVE_HUMIDITY:
+            case MeteoVariableCode.RELATIVE_HUMIDITY:
+            case MeteoVariableCode.MAX_RELATIVE_HUMIDITY:
                 return {min: 0, max: 100 };
-            case MeteoVariableCodes.ATHMOSPHERIC_PRESSURE:
-            case MeteoVariableCodes.MAX_ATMOSPHERIC_PRESSURE:
-            case MeteoVariableCodes.MIN_ATMOSPHERIC_PRESSURE:
+            case MeteoVariableCode.ATHMOSPHERIC_PRESSURE:
+            case MeteoVariableCode.MAX_ATMOSPHERIC_PRESSURE:
+            case MeteoVariableCode.MIN_ATMOSPHERIC_PRESSURE:
                 return { min: 900, max: 1100 }
-            case MeteoVariableCodes.RAIN:
+            case MeteoVariableCode.RAIN:
                 return { min: 0, max: 100 };
-            case MeteoVariableCodes.SNOW_LEVEL:
+            case MeteoVariableCode.SNOW_LEVEL:
                 return { min: 0, max: 100 };
-            case MeteoVariableCodes.GLOBAL_SOLAR_IRRADIANCE:
+            case MeteoVariableCode.GLOBAL_SOLAR_IRRADIANCE:
                 return { min: 0, max: 1000 };
-            case MeteoVariableCodes.TEMPERATURE:
-            case MeteoVariableCodes.MAX_TEMPERATURE:
-            case MeteoVariableCodes.MIN_TEMPERATURE:
+            case MeteoVariableCode.TEMPERATURE:
+            case MeteoVariableCode.MAX_TEMPERATURE:
+            case MeteoVariableCode.MIN_TEMPERATURE:
                 return { min: -20, max: 60 };
-            case MeteoVariableCodes.WIND_VELOCITY:
+            case MeteoVariableCode.WIND_VELOCITY:
                 return { min: 0, max: 150 };
-            case MeteoVariableCodes.WIND_DIRECTION:
+            case MeteoVariableCode.WIND_DIRECTION:
                 return { min: 0, max: 360 };
             default:
                 return { min: 0, max: 100 };
@@ -162,7 +162,7 @@ export const MeteoDataPage = () => {
     }
 
     const _getDefaultChartVariableAndTitle = (): { variableCode: string, title: string } => {
-        return { variableCode: MeteoVariableCodes.TEMPERATURE, title: 'Temperature (ºC)' }
+        return { variableCode: MeteoVariableCode.TEMPERATURE, title: 'Temperature (ºC)' }
     }
 
     return (
