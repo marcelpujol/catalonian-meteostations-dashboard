@@ -6,7 +6,7 @@ export function getMeteoStationMarker(code: string) {
         className: `custom-marker marker-code-${code}`,
         html: getMarkerHtml(code),
         iconSize: [15, 15],
-        iconAnchor: [10, 10]
+        iconAnchor: [15, 15]
     });
 }
 
